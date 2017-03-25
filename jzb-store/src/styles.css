@@ -2,4 +2,33 @@ h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 250%;
+ 
+}
+h2 {
+	 margin-top: 0px;
+	 margin-bottom: 10px;
+}
+.details{
+	margin-top: 10px;
+}
+.tiny {
+	font-size: 50%;
+	margin-top: 10px;
+}
+.sku {
+	font-style: italic;
+	float: left;
+}
+.price {
+	font-style: italic;
+	float: right;
+}
+.box {
+	border: solid black 2px;
+	width: 33%;
+	padding: 20px;
+}
+.box textarea {
+	width: 80%;
+	height:80px;
 }
