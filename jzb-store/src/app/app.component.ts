@@ -36,6 +36,17 @@ const PRODUCTS: Product[] = [
 		description: 'The great Dr. Emmett \"Doc\" Brown came up with the idea for the flux capacitor after falling off the toilet he was standing on while hanging a clock and hitting his head on the sink. Skip the concussion and order your own flux capacitor today ',
 		availability: 'Sold Out',
 		disclaimer: 'Not responsible for universe-destroying paradoxes.	Activation requires 1.21 gigawatts of electricity. Fusion power recommended, will run on plutonium or lightning. Compatibility not guaranteed with vehicles other than 1981, 1982, or 1983 DeLorean'
+	},
+	{
+		id: 3,
+		sku: 'WAND-5597',
+		name: 'Magic Wand',
+		variant: '11", Holly, Phoenix Feather Core'
+		description: 'Every good wizard needs a wand.',
+		price: 7,
+		currency: 'galleons',
+		availability: 'Sold Out',
+		disclaimer: 'Muggles are not supposed to have wands.'
 	}
 ];
 
@@ -45,7 +56,7 @@ const PRODUCTS: Product[] = [
   
   <h1>{{title}}</h1>
   <ul class="product-list">
-	<li *ngFor="let product of products">
+	<li *ngFor="let product of products" (click)="onSelect(product)" [class.selected]="product==selectedProduct">
 		<span class="product-id">
 			{{product.id}}
 		</span>
@@ -59,56 +70,74 @@ const PRODUCTS: Product[] = [
 	</li>
   </ul>
 
-  <!--
+ 
     
   
-  <div class="box">
-	<h2>{{product.name}} ({{product.variant}})</h2>
-	<div>&nbsp;
-	<div class="sku">SKU#{{product.sku}}</div>
-	
-	<div class="price">{{product.price}} {{product.currency}}</div>
+	<div class="product-details" *ngIf="selectedProduct && !edit">
+		<a class="toggleMode" (click)="toggleMode()">edit</a>
+		<h2>
+			{{selectedProduct.name}} <span *ngIf="selectedProduct.variant">({{selectedProduct.variant}})</span>
+		</h2>
+		
+		<div>&nbsp;
+		<div class="sku" *ngIf="selectedProduct.sku">SKU#{{selectedProduct.sku}}</div>
+
+		<div class="price">{{selectedProduct.price}} {{selectedProduct.currency}}</div>
+		</div>
+		<div class="description">{{selectedProduct.description}}</div>
+		<div class="disclaimer">{{selectedProduct.disclaimer}}</div>
 	</div>
-	<div class="details">{{product.description}}</div>
-	<div class="tiny">{{product.disclaimer}}</div>
-   </div>
    
-   <div class="box">
-    <div>
-		<label>id: </label>{{product.id}}
-		
-		<label>sku:</label>
-		<input [(ngModel)]="product.sku" placeholder="sku" />
-	</div>
-	<div>
-		
-		
-		<label>price:</label>
-		<input [(ngModel)]="product.price" placeholder="price" />
-		
-		<label>currency:</label>
-		<input [(ngModel)]="product.currency" placeholder="currency" />
-		
-		<label>availability:</label>
-		<input [(ngModel)]="product.availability" 
-			   placeholder="availability" />
-	</div>
-	<div>
-		<label>name:</label>
-		<input [(ngModel)]="product.name" placeholder="name" />
-		
-		<label>variant:</label>
-		<input [(ngModel)]="product.variant" placeholder="name" />
-	</div>
-	<div>
-		<label>description</label><br/>
-		<textarea [(ngModel)]="product.description" placeholder="description" ></textarea>
-	</div>
-	<div>
-		<label>disclaimer</label><br/>
-		<textarea [(ngModel)]="product.disclaimer" placeholder="disclaimer" ></textarea>
-	</div>
-    </div>-->
+    <div class="product-editor" *ngIf="selectedProduct && edit">
+		<a class="toggleMode" (click)="toggleMode()">details</a>
+		<div class="editor-row">
+			
+			<div class="editor-item">
+				<label>id: </label>{{selectedProduct.id}}
+			</div>
+			
+			<div class="editor-item">
+				<label>sku:</label>
+				<input [(ngModel)]="selectedProduct.sku" placeholder="sku" />
+			</div>
+		</div>
+		<div class="editor-row">
+			
+			<div class="editor-item">
+				<label>price:</label>
+				<input [(ngModel)]="selectedProduct.price" placeholder="price" />
+			</div>
+			
+			<div class="editor-item">
+				<label>currency:</label>
+				<input [(ngModel)]="selectedProduct.currency" placeholder="currency" />
+			</div>
+			
+			<div class="editor-item">
+				<label>availability:</label>
+				<input [(ngModel)]="selectedProduct.availability" placeholder="availability" />
+			</div>
+		</div>
+		<div class="editor-row">
+			<div class="editor-item">
+				<label>name:</label>
+				<input [(ngModel)]="selectedProduct.name" placeholder="name" />
+			</div>
+			
+			<div class="editor-item">
+				<label>variant:</label>
+				<input [(ngModel)]="selectedProduct.variant" placeholder="name" />
+			</div>
+		</div>
+		<div>
+			<label>description</label>
+			<textarea [(ngModel)]="selectedProduct.description" placeholder="description" ></textarea>
+		</div>
+		<div>
+			<label>disclaimer</label>
+			<textarea [(ngModel)]="selectedProduct.disclaimer" placeholder="disclaimer" ></textarea>
+		</div>
+    </div>
   `,
   styles: [`
 	.product-list {
@@ -154,6 +183,47 @@ const PRODUCTS: Product[] = [
     position: relative;
     top: 3px;
   }
+  .product-details, .product-editor {
+	border: solid black 2px;
+	width: 50%;
+	padding: 20px;
+}
+  .product-details, .product-editor 
+.product-details .description{
+	margin-top: 10px;
+}
+.product-details .disclaimer {
+	font-size: 50%;
+	margin-top: 10px;
+}
+.product-details .sku {
+	font-style: italic;
+	float: left;
+}
+.product-details .price {
+	font-style: italic;
+	float: right;
+}
+.product-editor textarea {
+	width: 80%;
+	height:80px;
+}
+.product-editor label {
+	font-size: 80%;
+	width: 20px;
+	display: block;
+}
+
+.editor-item {
+	display: inline-block;
+	margin-bottom: 5px;
+	min-width: 25px;
+}
+.product-editor .toggleMode, .product-details .toggleMode {
+	float: right;
+	cursor: pointer;
+	color: navy;
+}
   
   `]
 })
@@ -163,4 +233,12 @@ const PRODUCTS: Product[] = [
 export class AppComponent  { 
 	title = 'Josh\'s Super Awesome Store 3';
 	products = PRODUCTS;
+	edit: boolean;
+	
+	onSelect(product: Product): void {
+		this.selectedProduct = product;
+	}
+	toggleMode(): void {
+		this.edit = !this.edit;
+	}
 }
