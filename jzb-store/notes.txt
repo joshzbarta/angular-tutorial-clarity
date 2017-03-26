@@ -2,4 +2,5 @@
 	look at toh example
 002 - Editor
 	
-		
+003 - Master / Detail
+	Gotcha note: syntax errors might prevent npm start from working, even though the app itself would still work if the offending change was made while the TypeScript compiler is running in watch mode

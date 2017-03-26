@@ -14,7 +14,7 @@ var Product = (function () {
 exports.Product = Product;
 var AppComponent = (function () {
     function AppComponent() {
-        this.title = 'Josh\'s Super Awesome Store';
+        this.title = 'Josh\'s Super Awesome Store3';
         this.product = {
             id: 1,
             sku: 'LS-BLU',

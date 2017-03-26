@@ -64,7 +64,7 @@ export class Product {
   `,
 })
 export class AppComponent  { 
-	title = 'Josh\'s Super Awesome Store',
+	title = 'Josh\'s Super Awesome Store3';
 	product = {
 		id: 1,
 		sku: 'LS-BLU',
