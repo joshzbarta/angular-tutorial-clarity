@@ -35,13 +35,16 @@ const PRODUCTS: Product[] = [
 		name: 'Flux Capacitor',
 		description: 'The great Dr. Emmett \"Doc\" Brown came up with the idea for the flux capacitor after falling off the toilet he was standing on while hanging a clock and hitting his head on the sink. Skip the concussion and order your own flux capacitor today ',
 		availability: 'Sold Out',
-		disclaimer: 'Not responsible for universe-destroying paradoxes.	Activation requires 1.21 gigawatts of electricity. Fusion power recommended, will run on plutonium or lightning. Compatibility not guaranteed with vehicles other than 1981, 1982, or 1983 DeLorean'
+		disclaimer: 'Not responsible for universe-destroying paradoxes.	Activation requires 1.21 gigawatts of electricity. Fusion power recommended, will run on plutonium or lightning. Compatibility not guaranteed with vehicles other than 1981, 1982, or 1983 DeLorean',
+		variant: '',
+		price: 0,
+		currency: ''
 	},
 	{
 		id: 3,
 		sku: 'WAND-5597',
 		name: 'Magic Wand',
-		variant: '11", Holly, Phoenix Feather Core'
+		variant: '11", Holly, Phoenix Feather Core',
 		description: 'Every good wizard needs a wand.',
 		price: 7,
 		currency: 'galleons',
@@ -234,7 +237,7 @@ export class AppComponent  {
 	title = 'Josh\'s Super Awesome Store 3';
 	products = PRODUCTS;
 	edit: boolean;
-	
+	selectedProduct: Product;
 	onSelect(product: Product): void {
 		this.selectedProduct = product;
 	}
