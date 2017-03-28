@@ -4,3 +4,7 @@
 	
 003 - Master / Detail
 	Gotcha note: syntax errors might prevent npm start from working, even though the app itself would still work if the offending change was made while the TypeScript compiler is running in watch mode
+004 - Multiple Components
+005 - Services
+	constructor( @Inject(LoggerService) private logger: LoggerService){}
+	non-intuitive syntax here... is this the "best practice" way of injecting one service into another?

@@ -15,10 +15,12 @@ var AppComponent = (function () {
     function AppComponent(productService, logger) {
         this.productService = productService;
         this.logger = logger;
-        this.title = 'Josh\'s Super Awesome Store 4';
+        this.title = 'Josh\'s Super Awesome Store 5';
     }
     AppComponent.prototype.getProducts = function () {
-        this.products = this.productService.getProducts();
+        var _this = this;
+        this.productService.getProductsSlow()
+            .then(function (products) { return _this.products = products; });
     };
     AppComponent.prototype.ngOnInit = function () {
         this.logger.logInfo('AppComponent:OnInit start');

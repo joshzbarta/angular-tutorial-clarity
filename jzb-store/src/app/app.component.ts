@@ -81,14 +81,15 @@ import { LoggerService } from './logger.service';
 
 
 export class AppComponent implements OnInit {
-	title = 'Josh\'s Super Awesome Store 4';
+	title = 'Josh\'s Super Awesome Store 5';
 
 	products: Product[];
   selectedProduct: Product;
 
   constructor(private productService: ProductService, private logger: LoggerService){}
   getProducts(): void {
-    this.products = this.productService.getProducts();
+    this.productService.getProductsSlow()
+      .then(products => this.products=products);
   }
   ngOnInit(): void {
     this.logger.logInfo('AppComponent:OnInit start')

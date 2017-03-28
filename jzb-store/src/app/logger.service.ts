@@ -1,3 +1,6 @@
+//this is basically a copy of the logger.service.ts from
+// https://angular.io/resources/live-examples/cb-dependency-injection/ts/eplnkr.html
+
 import { Injectable } from '@angular/core';
 
 @Injectable()
