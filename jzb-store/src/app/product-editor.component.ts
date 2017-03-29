@@ -9,11 +9,11 @@ import 'rxjs/add/operator/switchMap';
 
 
 @Component({
-  selector: 'product-detail',
-  templateUrl: './product-details.component.html',
-	styleUrls: [ './product-detail.component.css'	]
+  selector: 'product-editor',
+  templateUrl: './product-editor.component.html',
+	styleUrls: [ './product-detail.component.css'	] //use same stylesheet as product-detail for now
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductEditorComponent implements OnInit {
   @Input() product: Product;
   edit: boolean;
   constructor(
@@ -32,9 +32,9 @@ export class ProductDetailComponent implements OnInit {
     this.logger.logInfo('ProductDetailComponent:OnInit end');
   }
 
-  toggleMode(): void {
-    this.router.navigate(['/editor', this.product.id]);
-  }
+	toggleMode(): void {
+    this.router.navigate(['/detail', this.product.id]);
+	}
   goBack(): void {
     this.location.back();
   }

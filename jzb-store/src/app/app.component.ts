@@ -7,7 +7,8 @@ import { Component } from '@angular/core';
     <a routerLink="/dashboard">Dashboard</a>
     <a routerLink="/products">Products</a>
     <router-outlet></router-outlet>
-  `
+  `,
+  styleUrls: [ './app.component.css' ]
 })
 export class AppComponent {
   title = 'Josh\'s Super Awesome Store 6';

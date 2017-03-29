@@ -16,15 +16,15 @@ var product_1 = require("./product");
 var product_service_1 = require("./product.service");
 var logger_service_1 = require("./logger.service");
 require("rxjs/add/operator/switchMap");
-var ProductDetailComponent = (function () {
-    function ProductDetailComponent(router, productService, route, location, logger) {
+var ProductEditorComponent = (function () {
+    function ProductEditorComponent(router, productService, route, location, logger) {
         this.router = router;
         this.productService = productService;
         this.route = route;
         this.location = location;
         this.logger = logger;
     }
-    ProductDetailComponent.prototype.ngOnInit = function () {
+    ProductEditorComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.logger.logInfo('ProductDetailComponent:OnInit start');
         this.route.params
@@ -32,29 +32,29 @@ var ProductDetailComponent = (function () {
             .subscribe(function (product) { return _this.product = product; });
         this.logger.logInfo('ProductDetailComponent:OnInit end');
     };
-    ProductDetailComponent.prototype.toggleMode = function () {
-        this.router.navigate(['/editor', this.product.id]);
+    ProductEditorComponent.prototype.toggleMode = function () {
+        this.router.navigate(['/detail', this.product.id]);
     };
-    ProductDetailComponent.prototype.goBack = function () {
+    ProductEditorComponent.prototype.goBack = function () {
         this.location.back();
     };
-    return ProductDetailComponent;
+    return ProductEditorComponent;
 }());
 __decorate([
     core_1.Input(),
     __metadata("design:type", product_1.Product)
-], ProductDetailComponent.prototype, "product", void 0);
-ProductDetailComponent = __decorate([
+], ProductEditorComponent.prototype, "product", void 0);
+ProductEditorComponent = __decorate([
     core_1.Component({
-        selector: 'product-detail',
-        templateUrl: './product-details.component.html',
-        styleUrls: ['./product-detail.component.css']
+        selector: 'product-editor',
+        templateUrl: './product-editor.component.html',
+        styleUrls: ['./product-detail.component.css'] //use same stylesheet as product-detail for now
     }),
     __metadata("design:paramtypes", [router_2.Router,
         product_service_1.ProductService,
         router_1.ActivatedRoute,
         common_1.Location,
         logger_service_1.LoggerService])
-], ProductDetailComponent);
-exports.ProductDetailComponent = ProductDetailComponent;
-//# sourceMappingURL=product-detail.component.js.map
+], ProductEditorComponent);
+exports.ProductEditorComponent = ProductEditorComponent;
+//# sourceMappingURL=product-editor.component.js.map

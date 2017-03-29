@@ -1,0 +1,23 @@
+<ul class="product-list">
+  <li *ngFor="let product of products" (click)="onSelect(product)" [class.selected]="product==selectedProduct">
+		<span class="product-id">{{product.id}}</span>
+    <span class="product-sku">{{product.sku}}</span>
+
+    <span class="product-name" >
+			<span>{{product.name}}</span>
+			<span *ngIf="product.variant">({{product.variant}})</span>
+		 </span>
+  </li>
+</ul>
+
+<div *ngIf="selectedProduct">
+  <h2>
+    Show me {{selectedProduct.name | uppercase}}
+    <span *ngIf="selectedProduct.variant">({{selectedProduct.variant}})</span>
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
+
+<!--
+<product-detail [product]="selectedProduct"></product-detail>
+-->
