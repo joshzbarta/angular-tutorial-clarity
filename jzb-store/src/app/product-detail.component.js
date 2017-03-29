@@ -9,12 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var common_1 = require("@angular/common");
 var product_1 = require("./product");
+var product_service_1 = require("./product.service");
+var logger_service_1 = require("./logger.service");
+require("rxjs/add/operator/switchMap");
 var ProductDetailComponent = (function () {
-    function ProductDetailComponent() {
+    function ProductDetailComponent(productService, route, location, logger) {
+        this.productService = productService;
+        this.route = route;
+        this.location = location;
+        this.logger = logger;
     }
+    ProductDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.logger.logInfo('ProductDetailComponent:OnInit start');
+        this.route.params
+            .switchMap(function (params) { return _this.productService.getProduct(+params['id']); })
+            .subscribe(function (product) { return _this.product = product; });
+        this.logger.logInfo('ProductDetailComponent:OnInit end');
+    };
     ProductDetailComponent.prototype.toggleMode = function () {
         this.edit = !this.edit;
+    };
+    ProductDetailComponent.prototype.goBack = function () {
+        this.location.back();
     };
     return ProductDetailComponent;
 }());
@@ -25,11 +45,13 @@ __decorate([
 ProductDetailComponent = __decorate([
     core_1.Component({
         selector: 'product-detail',
-        template: "\n    <div class=\"product-details\" *ngIf=\"product && !edit\">\n\t\t<a class=\"toggleMode\" (click)=\"toggleMode()\">edit</a>\n\t\t<h2>\n\t\t\t{{product.name}} <span *ngIf=\"product.variant\">({{product.variant}})</span>\n\t\t</h2>\n\t\t\n\t\t<div>&nbsp;\n\t\t<div class=\"sku\" *ngIf=\"product.sku\">SKU#{{product.sku}}</div>\n\n\t\t<div class=\"price\">{{product.price}} {{product.currency}}</div>\n\t\t</div>\n\t\t<div class=\"description\">{{product.description}}</div>\n\t\t<div class=\"disclaimer\">{{product.disclaimer}}</div>\n\t</div>\n\t\n\t<div class=\"product-editor\" *ngIf=\"product && edit\">\n\t\t<a class=\"toggleMode\" (click)=\"toggleMode()\">details</a>\n\t\t<div class=\"editor-row\">\n\t\t\t\n\t\t\t<div class=\"editor-item\">\n\t\t\t\t<label>id: </label>{{product.id}}\n\t\t\t</div>\n\t\t\t\n\t\t\t<div class=\"editor-item\">\n\t\t\t\t<label>sku:</label>\n\t\t\t\t<input [(ngModel)]=\"product.sku\" placeholder=\"sku\" />\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"editor-row\">\n\t\t\t\n\t\t\t<div class=\"editor-item\">\n\t\t\t\t<label>price:</label>\n\t\t\t\t<input [(ngModel)]=\"product.price\" placeholder=\"price\" />\n\t\t\t</div>\n\t\t\t\n\t\t\t<div class=\"editor-item\">\n\t\t\t\t<label>currency:</label>\n\t\t\t\t<input [(ngModel)]=\"product.currency\" placeholder=\"currency\" />\n\t\t\t</div>\n\t\t\t\n\t\t\t<div class=\"editor-item\">\n\t\t\t\t<label>availability:</label>\n\t\t\t\t<input [(ngModel)]=\"product.availability\" placeholder=\"availability\" />\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"editor-row\">\n\t\t\t<div class=\"editor-item\">\n\t\t\t\t<label>name:</label>\n\t\t\t\t<input [(ngModel)]=\"product.name\" placeholder=\"name\" />\n\t\t\t</div>\n\t\t\t\n\t\t\t<div class=\"editor-item\">\n\t\t\t\t<label>variant:</label>\n\t\t\t\t<input [(ngModel)]=\"product.variant\" placeholder=\"name\" />\n\t\t\t</div>\n\t\t</div>\n\t\t<div>\n\t\t\t<label>description</label>\n\t\t\t<textarea [(ngModel)]=\"product.description\" placeholder=\"description\" ></textarea>\n\t\t</div>\n\t\t<div>\n\t\t\t<label>disclaimer</label>\n\t\t\t<textarea [(ngModel)]=\"product.disclaimer\" placeholder=\"disclaimer\" ></textarea>\n\t\t</div>\n    </div>\n\t",
-        styles: [
-            " \n\t\t.product-details, .product-editor {\n\tborder: solid black 2px;\n\twidth: 50%;\n\tpadding: 20px;\n}\n.product-details, .product-editor \n.product-details .description{\n\tmargin-top: 10px;\n}\n.product-details .disclaimer {\n\tfont-size: 50%;\n\tmargin-top: 10px;\n}\n.product-details .sku {\n\tfont-style: italic;\n\tfloat: left;\n}\n.product-details .price {\n\tfont-style: italic;\n\tfloat: right;\n}\n.product-editor .toggleMode, .product-details .toggleMode {\n\tfloat: right;\n\tcursor: pointer;\n\tcolor: navy;\n}\n.product-editor textarea {\n\twidth: 80%;\n\theight:80px;\n}\n.product-editor label {\n\tfont-size: 80%;\n\twidth: 20px;\n\tdisplay: block;\n}\n\n.editor-item {\n\tdisplay: inline-block;\n\tmargin-bottom: 5px;\n\tmin-width: 25px;\n}\n"
-        ]
-    })
+        templateUrl: './product-details.component.html',
+        styleUrls: ['./product-detail.component.css']
+    }),
+    __metadata("design:paramtypes", [product_service_1.ProductService,
+        router_1.ActivatedRoute,
+        common_1.Location,
+        logger_service_1.LoggerService])
 ], ProductDetailComponent);
 exports.ProductDetailComponent = ProductDetailComponent;
 //# sourceMappingURL=product-detail.component.js.map

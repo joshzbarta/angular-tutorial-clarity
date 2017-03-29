@@ -37,6 +37,25 @@ var ProductService = (function () {
             }, 2000);
         });
     };
+    ProductService.prototype.getProductsCached = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.logger.logInfo('getting product data');
+            if (_this.cachedProducts) {
+                _this.logger.logInfo('return cached products');
+                resolve(_this.cachedProducts);
+            }
+            else {
+                _this.logger.logInfo('get products from (mock) server');
+                _this.getProductsSlow()
+                    .then(function (products) { return resolve(_this.cachedProducts = products); });
+            }
+        });
+    };
+    ProductService.prototype.getProduct = function (id) {
+        return this.getProductsCached()
+            .then(function (products) { return products.find(function (product) { return product.id === id; }); });
+    };
     return ProductService;
 }());
 ProductService = __decorate([

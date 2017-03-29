@@ -36,5 +36,16 @@ export const PRODUCTS: Product[] = [
     currency: 'galleons',
     availability: 'Sold Out',
     disclaimer: 'Muggles are not supposed to have wands.'
+  },
+  {
+    id: 4,
+    sku: 'POKEBALL',
+    name: 'Poké Ball',
+    variant: '',
+    description: 'A standard Poké Ball, used for catching Pokémon',
+    price: 200,
+    currency: '₱',
+    availability: 'Sold Out',
+    disclaimer: ''
   }
 ];

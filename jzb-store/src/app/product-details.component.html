@@ -1,0 +1,66 @@
+<div class="product-details" *ngIf="product && !edit">
+  <a class="toggleMode" (click)="toggleMode()">edit</a>
+  <h2>
+    {{product.name}} <span *ngIf="product.variant">({{product.variant}})</span>
+  </h2>
+
+  <div>&nbsp;
+    <div class="sku" *ngIf="product.sku">SKU#{{product.sku}}</div>
+
+    <div *ngIf="product.price" class="price">{{product.price}} {{product.currency}}</div>
+  </div>
+  <div class="description">{{product.description}}</div>
+  <div class="disclaimer">{{product.disclaimer}}</div>
+</div>
+
+<div class="product-editor" *ngIf="product && edit">
+  <a class="toggleMode" (click)="toggleMode()">details</a>
+  <div class="editor-row">
+
+    <div class="editor-item">
+      <label>id: </label>{{product.id}}
+    </div>
+
+    <div class="editor-item">
+      <label>sku:</label>
+      <input [(ngModel)]="product.sku" placeholder="sku" />
+    </div>
+  </div>
+  <div class="editor-row">
+
+    <div class="editor-item">
+      <label>price:</label>
+      <input [(ngModel)]="product.price" placeholder="price" />
+    </div>
+
+    <div class="editor-item">
+      <label>currency:</label>
+      <input [(ngModel)]="product.currency" placeholder="currency" />
+    </div>
+
+    <div class="editor-item">
+      <label>availability:</label>
+      <input [(ngModel)]="product.availability" placeholder="availability" />
+    </div>
+  </div>
+  <div class="editor-row">
+    <div class="editor-item">
+      <label>name:</label>
+      <input [(ngModel)]="product.name" placeholder="name" />
+    </div>
+
+    <div class="editor-item">
+      <label>variant:</label>
+      <input [(ngModel)]="product.variant" placeholder="name" />
+    </div>
+  </div>
+  <div>
+    <label>description</label>
+    <textarea [(ngModel)]="product.description" placeholder="description" ></textarea>
+  </div>
+  <div>
+    <label>disclaimer</label>
+    <textarea [(ngModel)]="product.disclaimer" placeholder="disclaimer" ></textarea>
+  </div>
+</div>
+<button (click)="goBack()">Back</button>
