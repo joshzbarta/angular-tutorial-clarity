@@ -16,6 +16,15 @@ export class ProductService {
   private productsUrl = 'api/products';
   constructor( @Inject(LoggerService) private logger: LoggerService, private http: Http){}
 
+  getProduct(id: number): Promise<Product> {
+    const url = `${this.productsUrl}/${id}`;
+
+    return this.http.get(url)
+      .toPromise()
+      .then(response => response.json().data as Product)
+      .catch(this.handleError);
+  }
+
   getProducts(): Promise<Product[]> {
     return this.http.get(this.productsUrl).toPromise()
       .then(response => response.json().data as Product[])
@@ -23,7 +32,7 @@ export class ProductService {
   }
 
   private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
+    this.logger.logError('ProductService failed to load products!');
     return Promise.reject(error.message || error);
   }
 
@@ -58,11 +67,5 @@ export class ProductService {
         }
     })
   }
-
-  getProduct(id: number): Promise<Product> {
-    return this.getProductsCached()
-      .then(products => products.find(product => product.id === id));
-  }
-
-
+  
 }

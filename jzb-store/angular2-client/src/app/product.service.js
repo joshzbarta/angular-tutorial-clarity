@@ -25,13 +25,20 @@ var ProductService = (function () {
         this.http = http;
         this.productsUrl = 'api/products';
     }
+    ProductService.prototype.getProduct = function (id) {
+        var url = this.productsUrl + "/" + id;
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) { return response.json().data; })
+            .catch(this.handleError);
+    };
     ProductService.prototype.getProducts = function () {
         return this.http.get(this.productsUrl).toPromise()
             .then(function (response) { return response.json().data; })
             .catch(this.handleError);
     };
     ProductService.prototype.handleError = function (error) {
-        console.error('An error occurred', error); // for demo purposes only
+        this.logger.logError('ProductService failed to load products!');
         return Promise.reject(error.message || error);
     };
     // based on https://angular.io/docs/ts/latest/tutorial/toh-pt4.html#!#slow
@@ -60,10 +67,6 @@ var ProductService = (function () {
                     .then(function (products) { return resolve(_this.cachedProducts = products); });
             }
         });
-    };
-    ProductService.prototype.getProduct = function (id) {
-        return this.getProductsCached()
-            .then(function (products) { return products.find(function (product) { return product.id === id; }); });
     };
     return ProductService;
 }());
