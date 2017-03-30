@@ -16,14 +16,23 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
  */
 var core_1 = require("@angular/core");
 var core_2 = require("@angular/core");
-var mock_products_1 = require("./mock-products");
+var http_1 = require("@angular/http");
+require("rxjs/add/operator/toPromise");
 var logger_service_1 = require("./logger.service");
 var ProductService = (function () {
-    function ProductService(logger) {
+    function ProductService(logger, http) {
         this.logger = logger;
+        this.http = http;
+        this.productsUrl = 'api/products';
     }
     ProductService.prototype.getProducts = function () {
-        return Promise.resolve(mock_products_1.PRODUCTS);
+        return this.http.get(this.productsUrl).toPromise()
+            .then(function (response) { return response.json().data; })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.handleError = function (error) {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
     };
     // based on https://angular.io/docs/ts/latest/tutorial/toh-pt4.html#!#slow
     ProductService.prototype.getProductsSlow = function () {
@@ -61,7 +70,7 @@ var ProductService = (function () {
 ProductService = __decorate([
     core_1.Injectable(),
     __param(0, core_2.Inject(logger_service_1.LoggerService)),
-    __metadata("design:paramtypes", [logger_service_1.LoggerService])
+    __metadata("design:paramtypes", [logger_service_1.LoggerService, http_1.Http])
 ], ProductService);
 exports.ProductService = ProductService;
 //# sourceMappingURL=product.service.js.map

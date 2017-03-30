@@ -1,8 +1,10 @@
 /**
  * Created by Joshua_Barta on 3/27/2017.
  */
-import { Injectable } from '@angular/core'
-import { Inject } from '@angular/core'
+import { Injectable } from '@angular/core';
+import { Inject } from '@angular/core';
+import { Headers, Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 import { Product } from './product';
 import { PRODUCTS } from './mock-products';
 import { LoggerService } from './logger.service';
@@ -11,10 +13,18 @@ import { LoggerService } from './logger.service';
 @Injectable()
 export class ProductService {
   cachedProducts: Product[];
-  constructor( @Inject(LoggerService) private logger: LoggerService){}
+  private productsUrl = 'api/products';
+  constructor( @Inject(LoggerService) private logger: LoggerService, private http: Http){}
 
   getProducts(): Promise<Product[]> {
-    return Promise.resolve(PRODUCTS);
+    return this.http.get(this.productsUrl).toPromise()
+      .then(response => response.json().data as Product[])
+      .catch(this.handleError);
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
 
   // based on https://angular.io/docs/ts/latest/tutorial/toh-pt4.html#!#slow
