@@ -47,7 +47,7 @@ __decorate([
 ProductDetailComponent = __decorate([
     core_1.Component({
         selector: 'product-detail',
-        templateUrl: './product-details.component.html',
+        templateUrl: './product-detail.component.html',
         styleUrls: ['./product-detail.component.css']
     }),
     __metadata("design:paramtypes", [router_2.Router,

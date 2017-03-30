@@ -21,7 +21,7 @@ var ProductsComponent = (function () {
     }
     ProductsComponent.prototype.getProducts = function () {
         var _this = this;
-        this.productService.getProductsCached()
+        this.productService.getProducts()
             .then(function (products) { return _this.products = products; });
     };
     ProductsComponent.prototype.ngOnInit = function () {
@@ -36,13 +36,31 @@ var ProductsComponent = (function () {
     ProductsComponent.prototype.gotoDetail = function () {
         this.router.navigate(['/detail', this.selectedProduct.id]);
     };
+    ProductsComponent.prototype.add = function (/*id: number,*/ sku, name, variant, description, price, currency, availability, disclaimer) {
+        var _this = this;
+        sku = sku.trim();
+        name = name.trim();
+        variant = variant.trim();
+        description = description.trim();
+        currency = currency.trim();
+        availability = availability.trim();
+        disclaimer = disclaimer.trim();
+        if (!sku || !name || !description || !currency) {
+            return;
+        }
+        this.productService.create(sku, name, variant, description, price, currency, availability, disclaimer)
+            .then(function (product) {
+            _this.products.push(product);
+            _this.selectedProduct = null;
+        });
+    };
     return ProductsComponent;
 }());
 ProductsComponent = __decorate([
     core_1.Component({
         selector: 'my-products',
         templateUrl: './products.component.html',
-        styleUrls: ['./products.component.css'],
+        styleUrls: ['./products.component.css', './product-detail.component.css'],
         providers: [product_service_1.ProductService, logger_service_1.LoggerService]
     }),
     __metadata("design:paramtypes", [router_1.Router,

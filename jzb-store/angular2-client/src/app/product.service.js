@@ -24,6 +24,7 @@ var ProductService = (function () {
         this.logger = logger;
         this.http = http;
         this.productsUrl = 'api/products';
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     ProductService.prototype.getProduct = function (id) {
         var url = this.productsUrl + "/" + id;
@@ -67,6 +68,31 @@ var ProductService = (function () {
                     .then(function (products) { return resolve(_this.cachedProducts = products); });
             }
         });
+    };
+    ProductService.prototype.update = function (product) {
+        var url = this.productsUrl + "/" + product.id;
+        return this.http
+            .put(url, JSON.stringify(product), { headers: this.headers })
+            .toPromise()
+            .then(function () { return product; })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.create = function (/*id: number,*/ sku, name, variant, description, price, currency, availability, disclaimer) {
+        return this.http
+            .post(this.productsUrl, JSON.stringify({
+            /*id: number,*/
+            sku: sku,
+            name: name,
+            variant: variant,
+            description: description,
+            price: price,
+            currency: currency,
+            availability: availability,
+            disclaimer: disclaimer
+        }), { headers: this.headers })
+            .toPromise()
+            .then(function (res) { return res.json().data; })
+            .catch(this.handleError);
     };
     return ProductService;
 }());

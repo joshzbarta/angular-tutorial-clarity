@@ -12,8 +12,10 @@ import { LoggerService } from './logger.service';
 
 @Injectable()
 export class ProductService {
-  cachedProducts: Product[];
+  private cachedProducts: Product[];
   private productsUrl = 'api/products';
+  private headers = new Headers({'Content-Type': 'application/json'});
+
   constructor( @Inject(LoggerService) private logger: LoggerService, private http: Http){}
 
   getProduct(id: number): Promise<Product> {
@@ -67,5 +69,39 @@ export class ProductService {
         }
     })
   }
-  
+
+
+  update(product: Product): Promise<Product> {
+    const url = `${this.productsUrl}/${product.id}`;
+    return this.http
+      .put(url, JSON.stringify(product), {headers: this.headers})
+      .toPromise()
+      .then(() => product)
+      .catch(this.handleError);
+  }
+  create(/*id: number,*/
+  sku: string,
+  name: string,
+  variant: string,
+  description: string,
+  price: number,
+  currency: string,
+  availability: string,
+  disclaimer: string): Promise<Product> {
+    return this.http
+      .post(this.productsUrl, JSON.stringify({
+        /*id: number,*/
+        sku: sku,
+        name: name,
+        variant: variant,
+        description: description,
+        price: price,
+        currency: currency,
+        availability: availability,
+        disclaimer: disclaimer
+      }), {headers: this.headers})
+      .toPromise()
+      .then(res => res.json().data as Product)
+      .catch(this.handleError);
+  }
 }

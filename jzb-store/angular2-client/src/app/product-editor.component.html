@@ -1,3 +1,4 @@
+<!-- TODO: properly combine this with the add new product stuff -->
 <div class="product-editor" *ngIf="product">
   <a class="toggleMode" (click)="toggleMode()">details</a>
   <div class="editor-row">
@@ -48,4 +49,4 @@
     <textarea [(ngModel)]="product.disclaimer" placeholder="disclaimer" ></textarea>
   </div>
 </div>
-<button (click)="goBack()">Back</button>
+<button (click)="goBack()">Back</button>   <button (click)="save()">Save</button>

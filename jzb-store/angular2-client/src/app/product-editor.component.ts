@@ -13,6 +13,8 @@ import 'rxjs/add/operator/switchMap';
   templateUrl: './product-editor.component.html',
 	styleUrls: [ './product-detail.component.css'	] //use same stylesheet as product-detail for now
 })
+
+//TODO: refactor to extend ProductDetailComponent
 export class ProductEditorComponent implements OnInit {
   @Input() product: Product;
   edit: boolean;
@@ -25,11 +27,11 @@ export class ProductEditorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.logger.logInfo('ProductDetailComponent:OnInit start');
+    this.logger.logInfo('ProductEditorComponent:OnInit start');
     this.route.params
       .switchMap((params: Params) => this.productService.getProduct(+params['id']))
       .subscribe(product => this.product = product);
-    this.logger.logInfo('ProductDetailComponent:OnInit end');
+    this.logger.logInfo('ProductEditorComponent:OnInit end');
   }
 
 	toggleMode(): void {
@@ -37,5 +39,9 @@ export class ProductEditorComponent implements OnInit {
 	}
   goBack(): void {
     this.location.back();
+  }
+  save(): void {
+    this.productService.update(this.product)
+      .then(() => this.goBack());
   }
 }

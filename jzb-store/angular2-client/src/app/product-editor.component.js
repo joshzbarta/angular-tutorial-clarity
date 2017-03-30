@@ -26,17 +26,22 @@ var ProductEditorComponent = (function () {
     }
     ProductEditorComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.logger.logInfo('ProductDetailComponent:OnInit start');
+        this.logger.logInfo('ProductEditorComponent:OnInit start');
         this.route.params
             .switchMap(function (params) { return _this.productService.getProduct(+params['id']); })
             .subscribe(function (product) { return _this.product = product; });
-        this.logger.logInfo('ProductDetailComponent:OnInit end');
+        this.logger.logInfo('ProductEditorComponent:OnInit end');
     };
     ProductEditorComponent.prototype.toggleMode = function () {
         this.router.navigate(['/detail', this.product.id]);
     };
     ProductEditorComponent.prototype.goBack = function () {
         this.location.back();
+    };
+    ProductEditorComponent.prototype.save = function () {
+        var _this = this;
+        this.productService.update(this.product)
+            .then(function () { return _this.goBack(); });
     };
     return ProductEditorComponent;
 }());

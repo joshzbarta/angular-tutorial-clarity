@@ -10,7 +10,7 @@ import { LoggerService } from './logger.service';
 @Component({
   selector: 'my-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css'],
+  styleUrls: ['./products.component.css', './product-detail.component.css'],
   providers: [ProductService, LoggerService]
 })
 
@@ -24,7 +24,7 @@ export class ProductsComponent implements OnInit {
               private productService: ProductService,
               private logger: LoggerService){}
   getProducts(): void {
-    this.productService.getProductsCached()
+    this.productService.getProducts()
       .then(products => this.products=products);
   }
   ngOnInit(): void {
@@ -40,4 +40,36 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['/detail', this.selectedProduct.id]);
   }
 
+  add(/*id: number,*/
+  sku: string,
+  name: string,
+  variant: string,
+  description: string,
+  price: number,
+  currency: string,
+  availability: string,
+  disclaimer: string): void {
+    sku = sku.trim();
+    name = name.trim();
+    variant = variant.trim();
+    description = description.trim();
+    currency = currency.trim();
+    availability = availability.trim();
+    disclaimer = disclaimer.trim();
+
+    if (!sku || !name || !description || !currency) { return; }
+
+    this.productService.create(sku,
+      name,
+      variant,
+      description,
+      price,
+      currency,
+      availability,
+      disclaimer)
+      .then(product => {
+        this.products.push(product);
+        this.selectedProduct = null;
+      });
+  }
 }
