@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 
-import { Product } from './product';
-import { ProductService } from './product.service';
+import { Product } from '../../models/product';
+import { ProductService } from '../../services/product.service';
 import { Router } from '@angular/router';
-import { LoggerService } from './logger.service';
+import { LoggerService } from '../../services/logger.service';
 
 
 @Component({
   selector: 'my-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css', './product-detail.component.css'],
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css', './../shared/product-detail-editor-shared.component.css'],
   providers: [ProductService, LoggerService]
 })
 

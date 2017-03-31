@@ -12,9 +12,9 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var common_1 = require("@angular/common");
 var router_2 = require("@angular/router");
-var product_1 = require("./product");
-var product_service_1 = require("./product.service");
-var logger_service_1 = require("./logger.service");
+var product_1 = require("../../models/product");
+var product_service_1 = require("../../services/product.service");
+var logger_service_1 = require("../../services/logger.service");
 require("rxjs/add/operator/switchMap");
 var ProductEditorComponent = (function () {
     function ProductEditorComponent(router, productService, route, location, logger) {
@@ -53,7 +53,7 @@ ProductEditorComponent = __decorate([
     core_1.Component({
         selector: 'product-editor',
         templateUrl: './product-editor.component.html',
-        styleUrls: ['./product-detail.component.css'] //use same stylesheet as product-detail for now
+        styleUrls: ['./../shared/product-detail-editor-shared.component.css'] //use same stylesheet as product-detail for now
     }),
     __metadata("design:paramtypes", [router_2.Router,
         product_service_1.ProductService,

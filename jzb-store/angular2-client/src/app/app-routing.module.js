@@ -7,14 +7,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var dashboard_component_1 = require("./dashboard.component");
-var products_component_1 = require("./products.component");
-var product_detail_component_1 = require("./product-detail.component");
-var product_editor_component_1 = require("./product-editor.component");
+var dashboard_component_1 = require("./components/dashboard/dashboard.component");
+var product_list_component_1 = require("./components/product-list/product-list.component");
+var product_detail_component_1 = require("./components/product-detail/product-detail.component");
+var product_editor_component_1 = require("./components/product-editor/product-editor.component");
 var routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
-    { path: 'products', component: products_component_1.ProductsComponent },
+    { path: 'products', component: product_list_component_1.ProductsComponent },
     { path: 'detail/:id', component: product_detail_component_1.ProductDetailComponent },
     { path: 'editor/:id', component: product_editor_component_1.ProductEditorComponent },
 ];

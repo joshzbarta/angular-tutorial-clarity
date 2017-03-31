@@ -6,17 +6,17 @@ import { AppRoutingModule }     from './app-routing.module';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+import { InMemoryDataService }  from './services/in-memory-data.service';
 
 import { AppComponent }  from './app.component';
 
-import { DashboardComponent }  from './dashboard.component';
-import { ProductsComponent } from './products.component';
-import { ProductDetailComponent } from './product-detail.component';
-import { ProductEditorComponent } from './product-editor.component';
-
-import { ProductService } from './product.service';
-import { LoggerService } from './logger.service';
+import { DashboardComponent }  from './components/dashboard/dashboard.component';
+import { ProductsComponent } from './components/product-list/product-list.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { ProductEditorComponent } from './components/product-editor/product-editor.component';
+import { ProductSearchComponent } from './components/product-search/product-search.component';
+import { ProductService } from './services/product.service';
+import { LoggerService } from './services/logger.service';
 
 
 @NgModule({
@@ -32,7 +32,8 @@ import { LoggerService } from './logger.service';
     DashboardComponent,
     ProductsComponent,
     ProductDetailComponent,
-    ProductEditorComponent
+    ProductEditorComponent,
+    ProductSearchComponent
   ],
   providers: [ ProductService, LoggerService ],
   bootstrap:    [ AppComponent ]

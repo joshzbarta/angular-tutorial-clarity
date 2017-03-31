@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { Product } from './product';
-import { PRODUCTS } from './mock-products';
+import { Product } from '../models/product';
+import { PRODUCTS } from '../mock-products';
 import { LoggerService } from './logger.service';
 
 

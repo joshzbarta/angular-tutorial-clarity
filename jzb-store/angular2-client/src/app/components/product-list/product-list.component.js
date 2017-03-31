@@ -9,9 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var product_service_1 = require("./product.service");
+var product_service_1 = require("../../services/product.service");
 var router_1 = require("@angular/router");
-var logger_service_1 = require("./logger.service");
+var logger_service_1 = require("../../services/logger.service");
 var ProductsComponent = (function () {
     function ProductsComponent(router, productService, logger) {
         this.router = router;
@@ -65,8 +65,8 @@ var ProductsComponent = (function () {
 ProductsComponent = __decorate([
     core_1.Component({
         selector: 'my-products',
-        templateUrl: './products.component.html',
-        styleUrls: ['./products.component.css', './product-detail.component.css'],
+        templateUrl: './product-list.component.html',
+        styleUrls: ['./product-list.component.css', './../shared/product-detail-editor-shared.component.css'],
         providers: [product_service_1.ProductService, logger_service_1.LoggerService]
     }),
     __metadata("design:paramtypes", [router_1.Router,
@@ -74,4 +74,4 @@ ProductsComponent = __decorate([
         logger_service_1.LoggerService])
 ], ProductsComponent);
 exports.ProductsComponent = ProductsComponent;
-//# sourceMappingURL=products.component.js.map
+//# sourceMappingURL=product-list.component.js.map

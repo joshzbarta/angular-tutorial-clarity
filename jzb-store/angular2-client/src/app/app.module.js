@@ -12,14 +12,15 @@ var http_1 = require("@angular/http");
 var app_routing_module_1 = require("./app-routing.module");
 // Imports for loading & configuring the in-memory web api
 var angular_in_memory_web_api_1 = require("angular-in-memory-web-api");
-var in_memory_data_service_1 = require("./in-memory-data.service");
+var in_memory_data_service_1 = require("./services/in-memory-data.service");
 var app_component_1 = require("./app.component");
-var dashboard_component_1 = require("./dashboard.component");
-var products_component_1 = require("./products.component");
-var product_detail_component_1 = require("./product-detail.component");
-var product_editor_component_1 = require("./product-editor.component");
-var product_service_1 = require("./product.service");
-var logger_service_1 = require("./logger.service");
+var dashboard_component_1 = require("./components/dashboard/dashboard.component");
+var product_list_component_1 = require("./components/product-list/product-list.component");
+var product_detail_component_1 = require("./components/product-detail/product-detail.component");
+var product_editor_component_1 = require("./components/product-editor/product-editor.component");
+var product_search_component_1 = require("./components/product-search/product-search.component");
+var product_service_1 = require("./services/product.service");
+var logger_service_1 = require("./services/logger.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -37,9 +38,10 @@ AppModule = __decorate([
         declarations: [
             app_component_1.AppComponent,
             dashboard_component_1.DashboardComponent,
-            products_component_1.ProductsComponent,
+            product_list_component_1.ProductsComponent,
             product_detail_component_1.ProductDetailComponent,
-            product_editor_component_1.ProductEditorComponent
+            product_editor_component_1.ProductEditorComponent,
+            product_search_component_1.ProductSearchComponent
         ],
         providers: [product_service_1.ProductService, logger_service_1.LoggerService],
         bootstrap: [app_component_1.AppComponent]

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from './product';
-import { ProductService } from './product.service';
-import { LoggerService } from './logger.service';
+import { Product } from '../../models/product';
+import { ProductService } from '../../services/product.service';
+import { LoggerService } from '../../services/logger.service';
+
 @Component({
   selector: 'my-dashboard',
   templateUrl: './dashboard.component.html',

@@ -1,5 +1,5 @@
 "use strict";
-var mock_products_1 = require("./mock-products");
+var mock_products_1 = require("../mock-products");
 var InMemoryDataService = (function () {
     function InMemoryDataService() {
     }

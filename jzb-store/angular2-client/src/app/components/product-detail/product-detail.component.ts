@@ -2,20 +2,18 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { Location }                 from '@angular/common';
 import { Router } from '@angular/router';
-import { Product } from './product';
-import { ProductService } from './product.service';
-import { LoggerService } from "./logger.service";
+import { Product } from '../../models/product';
+import { ProductService } from '../../services/product.service';
+import { LoggerService } from "../../services/logger.service";
 import 'rxjs/add/operator/switchMap';
 
 
 @Component({
-  selector: 'product-editor',
-  templateUrl: './product-editor.component.html',
-	styleUrls: [ './product-detail.component.css'	] //use same stylesheet as product-detail for now
+  selector: 'product-detail',
+  templateUrl: './product-detail.component.html',
+	styleUrls: [ './../shared/product-detail-editor-shared.component.css'	]
 })
-
-//TODO: refactor to extend ProductDetailComponent
-export class ProductEditorComponent implements OnInit {
+export class ProductDetailComponent implements OnInit {
   @Input() product: Product;
   edit: boolean;
   constructor(
@@ -27,21 +25,17 @@ export class ProductEditorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.logger.logInfo('ProductEditorComponent:OnInit start');
+    this.logger.logInfo('ProductDetailComponent:OnInit start');
     this.route.params
       .switchMap((params: Params) => this.productService.getProduct(+params['id']))
       .subscribe(product => this.product = product);
-    this.logger.logInfo('ProductEditorComponent:OnInit end');
+    this.logger.logInfo('ProductDetailComponent:OnInit end');
   }
 
-	toggleMode(): void {
-    this.router.navigate(['/detail', this.product.id]);
-	}
+  toggleMode(): void {
+    this.router.navigate(['/editor', this.product.id]);
+  }
   goBack(): void {
     this.location.back();
-  }
-  save(): void {
-    this.productService.update(this.product)
-      .then(() => this.goBack());
   }
 }

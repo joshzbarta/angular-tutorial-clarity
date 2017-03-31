@@ -1,7 +1,7 @@
 /**
  * Created by Joshua_Barta on 3/27/2017.
  */
-import {Product} from './product';
+import {Product} from './models/product';
 
 export const PRODUCTS: Product[] = [
   {

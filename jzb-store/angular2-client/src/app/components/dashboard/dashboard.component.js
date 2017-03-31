@@ -9,8 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var product_service_1 = require("./product.service");
-var logger_service_1 = require("./logger.service");
+var product_service_1 = require("../../services/product.service");
+var logger_service_1 = require("../../services/logger.service");
 var DashboardComponent = (function () {
     function DashboardComponent(productService, logger) {
         this.productService = productService;
