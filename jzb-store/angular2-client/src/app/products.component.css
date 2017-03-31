@@ -21,7 +21,7 @@
   cursor: pointer;
   position: relative;
   left: 0;
-  background-color: #EEE;
+  background-color: #AEE;
   margin: .5em;
   padding: .2em .5em .2em .5em;
   height: 1.6em;
@@ -40,4 +40,17 @@
 .product-list .product-name, .product-list .product-id, .product-list .product-sku  {
   position: relative;
   top: 3px;
+}
+button.delete {
+  float:right;
+  margin-top: 2px;
+  margin-right: .8em;
+  background-color: gray !important;
+  color:white;
+}
+h2 {
+  cursor: pointer;
+}
+h2:hover {
+  color: #607D8B;
 }

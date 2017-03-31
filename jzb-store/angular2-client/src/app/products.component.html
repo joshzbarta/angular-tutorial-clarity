@@ -1,21 +1,25 @@
 <ul class="product-list">
   <li *ngFor="let product of products" (click)="onSelect(product)" [class.selected]="product==selectedProduct">
-		<span class="product-id">{{product.id}}</span>
+    <button class="edit" *ngIf="product==selectedProduct" (click)="edit(product); $event.stopPropagation()">edit</button>
+    <span class="product-id">{{product.id}}</span>
     <span class="product-sku">{{product.sku}}</span>
 
     <span class="product-name" >
 			<span>{{product.name}}</span>
 			<span *ngIf="product.variant">({{product.variant}})</span>
+
+      <button class="delete" *ngIf="product==selectedProduct" (click)="delete(product); $event.stopPropagation()">x</button>
 		 </span>
   </li>
 </ul>
 
 <div *ngIf="selectedProduct">
-  <h2>
+  <h2 (click)="gotoDetail()">
     Show me {{selectedProduct.name | uppercase}}
     <span *ngIf="selectedProduct.variant">({{selectedProduct.variant}})</span>
+    ==>
   </h2>
-  <button (click)="gotoDetail()">View Details</button>
+
 </div>
 
 <!--

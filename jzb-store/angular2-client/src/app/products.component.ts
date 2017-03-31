@@ -34,10 +34,19 @@ export class ProductsComponent implements OnInit {
   }
 	onSelect(product: Product): void {
     this.logger.logInfo('ProductsComponent.onSelect called');
+    if(this.selectedProduct==product)
+    {
+      this.gotoDetail();
+    }
+
 		this.selectedProduct = product;
 	}
   gotoDetail(): void {
     this.router.navigate(['/detail', this.selectedProduct.id]);
+  }
+
+  edit(): void {
+    this.router.navigate(['/editor', this.selectedProduct.id]);
   }
 
   add(/*id: number,*/

@@ -20,7 +20,7 @@ var DashboardComponent = (function () {
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.logger.logInfo('DashboardComponent:OnInit start');
-        this.productService.getProductsCached()
+        this.productService.getProducts()
             .then(function (products) { return _this.products = products.slice(2, 4); });
         this.logger.logInfo('DashboardComponent:OnInit end');
     };

@@ -69,14 +69,6 @@ var ProductService = (function () {
             }
         });
     };
-    ProductService.prototype.update = function (product) {
-        var url = this.productsUrl + "/" + product.id;
-        return this.http
-            .put(url, JSON.stringify(product), { headers: this.headers })
-            .toPromise()
-            .then(function () { return product; })
-            .catch(this.handleError);
-    };
     ProductService.prototype.create = function (/*id: number,*/ sku, name, variant, description, price, currency, availability, disclaimer) {
         return this.http
             .post(this.productsUrl, JSON.stringify({
@@ -92,6 +84,21 @@ var ProductService = (function () {
         }), { headers: this.headers })
             .toPromise()
             .then(function (res) { return res.json().data; })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.update = function (product) {
+        var url = this.productsUrl + "/" + product.id;
+        return this.http
+            .put(url, JSON.stringify(product), { headers: this.headers })
+            .toPromise()
+            .then(function () { return product; })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.delete = function (id) {
+        var url = this.productsUrl + "/" + id;
+        return this.http.delete(url, { headers: this.headers })
+            .toPromise()
+            .then(function () { return null; })
             .catch(this.handleError);
     };
     return ProductService;

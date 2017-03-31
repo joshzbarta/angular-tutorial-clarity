@@ -70,24 +70,15 @@ export class ProductService {
     })
   }
 
-
-  update(product: Product): Promise<Product> {
-    const url = `${this.productsUrl}/${product.id}`;
-    return this.http
-      .put(url, JSON.stringify(product), {headers: this.headers})
-      .toPromise()
-      .then(() => product)
-      .catch(this.handleError);
-  }
   create(/*id: number,*/
-  sku: string,
-  name: string,
-  variant: string,
-  description: string,
-  price: number,
-  currency: string,
-  availability: string,
-  disclaimer: string): Promise<Product> {
+         sku: string,
+         name: string,
+         variant: string,
+         description: string,
+         price: number,
+         currency: string,
+         availability: string,
+         disclaimer: string): Promise<Product> {
     return this.http
       .post(this.productsUrl, JSON.stringify({
         /*id: number,*/
@@ -102,6 +93,25 @@ export class ProductService {
       }), {headers: this.headers})
       .toPromise()
       .then(res => res.json().data as Product)
+      .catch(this.handleError);
+  }
+
+  update(product: Product): Promise<Product> {
+    const url = `${this.productsUrl}/${product.id}`;
+    return this.http
+      .put(url, JSON.stringify(product), {headers: this.headers})
+      .toPromise()
+      .then(() => product)
+      .catch(this.handleError);
+  }
+
+
+
+  delete(id: number): Promise<void> {
+    const url = `${this.productsUrl}/${id}`;
+    return this.http.delete(url, {headers: this.headers})
+      .toPromise()
+      .then(() => null)
       .catch(this.handleError);
   }
 }

@@ -31,10 +31,16 @@ var ProductsComponent = (function () {
     };
     ProductsComponent.prototype.onSelect = function (product) {
         this.logger.logInfo('ProductsComponent.onSelect called');
+        if (this.selectedProduct == product) {
+            this.gotoDetail();
+        }
         this.selectedProduct = product;
     };
     ProductsComponent.prototype.gotoDetail = function () {
         this.router.navigate(['/detail', this.selectedProduct.id]);
+    };
+    ProductsComponent.prototype.edit = function () {
+        this.router.navigate(['/editor', this.selectedProduct.id]);
     };
     ProductsComponent.prototype.add = function (/*id: number,*/ sku, name, variant, description, price, currency, availability, disclaimer) {
         var _this = this;
