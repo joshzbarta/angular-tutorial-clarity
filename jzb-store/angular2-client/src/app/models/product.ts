@@ -13,4 +13,6 @@ export class Product {
 		this.price=0;
 		this.currency='';
 	}
+
+
 }

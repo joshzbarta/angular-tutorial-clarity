@@ -36,17 +36,17 @@ export class ProductsComponent implements OnInit {
     this.logger.logInfo('ProductsComponent.onSelect called');
     if(this.selectedProduct==product)
     {
-      this.gotoDetail();
+      this.gotoDetail(product);
     }
 
 		this.selectedProduct = product;
 	}
-  gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedProduct.id]);
+  gotoDetail(product: Product): void {
+    this.router.navigate(['/detail', product.id]);
   }
 
-  edit(): void {
-    this.router.navigate(['/editor', this.selectedProduct.id]);
+  edit(product: Product): void {
+    this.router.navigate(['/editor', product.id]);
   }
 
   add(/*id: number,*/
@@ -79,6 +79,16 @@ export class ProductsComponent implements OnInit {
       .then(product => {
         this.products.push(product);
         this.selectedProduct = null;
+      });
+  }
+
+  delete(product: Product) : void{
+    this.productService.delete(product.id)
+      .then(()=>{
+          this.products = this.products.filter(p=>p!=product);
+          if(this.selectedProduct==product) {
+            this.selectedProduct = null;
+          }
       });
   }
 }

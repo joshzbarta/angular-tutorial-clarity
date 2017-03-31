@@ -8,7 +8,7 @@
   <div>&nbsp;
     <div class="sku" *ngIf="product.sku">SKU#{{product.sku}}</div>
 
-    <div *ngIf="product.price" class="price">{{product.price}} {{product.currency}}</div>
+    <div *ngIf="product.price" class="price">{{getFormattedPrice(product)}}</div>
   </div>
   <div class="description">{{product.description}}</div>
   <div class="disclaimer">{{product.disclaimer}}</div>

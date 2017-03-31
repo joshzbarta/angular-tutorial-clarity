@@ -38,6 +38,15 @@ var ProductDetailComponent = (function () {
     ProductDetailComponent.prototype.goBack = function () {
         this.location.back();
     };
+    //temporary implementation
+    ProductDetailComponent.prototype.getFormattedPrice = function (product) {
+        if (product.currency.length === 1) {
+            return product.currency + '' + product.price;
+        }
+        else {
+            return product.price + ' ' + product.currency;
+        }
+    };
     return ProductDetailComponent;
 }());
 __decorate([

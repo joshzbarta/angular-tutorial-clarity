@@ -14,7 +14,7 @@
 </ul>
 
 <div *ngIf="selectedProduct">
-  <h2 (click)="gotoDetail()">
+  <h2 (click)="gotoDetail(selectedProduct)">
     Show me {{selectedProduct.name | uppercase}}
     <span *ngIf="selectedProduct.variant">({{selectedProduct.variant}})</span>
     ==>

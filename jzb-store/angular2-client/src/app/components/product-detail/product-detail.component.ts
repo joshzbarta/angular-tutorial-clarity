@@ -38,4 +38,14 @@ export class ProductDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
+  //temporary implementation
+  getFormattedPrice(product: Product): string{
+    if(product.currency.length===1){
+      return product.currency+''+product.price;
+    }
+    else {
+      return product.price+' '+product.currency;
+    }
+  }
 }
