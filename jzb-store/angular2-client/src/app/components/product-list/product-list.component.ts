@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core';
-
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
 import { Router } from '@angular/router';
@@ -11,12 +17,39 @@ import { LoggerService } from '../../services/logger.service';
   selector: 'my-products',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css', './../shared/product-detail-editor-shared.component.css'],
-  providers: [ProductService, LoggerService]
+  providers: [ProductService, LoggerService],
+  animations: [
+    trigger('productActiveState', [
+      state('inactive', style({
+        backgroundColor: '#eee',
+        transform: 'scale(1)'
+      })),
+      state('active',   style({
+        backgroundColor: '#cfd8dc',
+        transform: 'scale(1.1)'
+      })),
+      transition('* => void', [animate('500ms', style({opacity: 0, transform: 'scale(0)'}))]),
+      transition('inactive => active', animate('100ms ease-in')),
+      transition('active => inactive', animate('100ms ease-out'))
+    ]),
+      trigger('addProductFormState', [
+        state('expanded', style({
+          transform: 'scale(1)'
+        })),
+        state('collapsed',   style({
+          transform: 'scale(0)'
+        })),
+        transition('expanded => collapsed', animate('100ms ease-in')),
+        transition('collapsed => expanded', animate('100ms ease-out'))
+      ]),
+    trigger('showProductLinkState', [
+      transition(':enter', [animate(1000, style({opacity: 1, width:500, transform: 'scale(1)'}))]),
+      transition(':leave', [animate(1000, style({opacity: 0, transform: 'scale(0) translateX(-100%)'}))])
+    ])
+  ]
 })
 
 export class ProductsComponent implements OnInit {
-	title = 'Josh\'s Super Awesome Store 6';
-
 	products: Product[];
   selectedProduct: Product;
 
@@ -48,6 +81,26 @@ export class ProductsComponent implements OnInit {
   edit(product: Product): void {
     this.router.navigate(['/editor', product.id]);
   }
+
+  toggleAddProductForm(): void {
+    this.selectedProduct = null;
+  }
+
+  logAnimationInfo(evt: any): void {
+   try {
+     this.logger.logInfo( JSON.stringify(evt));
+   }
+   catch(ex){
+     this.logger.logInfo(
+     '"triggerName":"'+evt.triggerName+','+
+     '"fromState":"'+evt.toState+','+
+     '"fromState":"'+evt.toState+','+
+     '"phaseName":"'+evt.phaseName+','+
+     '"totalTime":"'+evt.totalTime);
+   }
+    
+  }
+
 
   add(/*id: number,*/
   sku: string,

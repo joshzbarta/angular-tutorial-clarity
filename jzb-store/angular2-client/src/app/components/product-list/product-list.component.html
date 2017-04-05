@@ -1,5 +1,9 @@
 <ul class="product-list">
-  <li *ngFor="let product of products" (click)="onSelect(product)" [class.selected]="product==selectedProduct">
+  <li *ngFor="let product of products" (click)="onSelect(product);"
+      (@productActiveState.start)="logAnimationInfo($event)"
+      (@productActiveState.done)="logAnimationInfo($event)"
+      [@productActiveState]="product==selectedProduct?'active':'inactive'"
+      [class.selected]="product==selectedProduct">
     <button class="edit" *ngIf="product==selectedProduct" (click)="edit(product); $event.stopPropagation()">edit</button>
     <span class="product-id">{{product.id}}</span>
     <span class="product-sku">{{product.sku}}</span>
@@ -11,9 +15,18 @@
       <button class="delete" *ngIf="product==selectedProduct" (click)="delete(product); $event.stopPropagation()">x</button>
 		 </span>
   </li>
+
+  <li (click)="toggleAddProductForm()">
+   Add New Product
+
+  </li>
+
 </ul>
 
-<div *ngIf="selectedProduct">
+<div *ngIf="selectedProduct"
+     (@showProductLinkState.start)="logAnimationInfo($event)"
+     (@showProductLinkState.done)="logAnimationInfo($event)"
+     [@showProductLinkState]="selectedProduct?'expanded':'collapsed'"  >
   <h2 (click)="gotoDetail(selectedProduct)">
     Show me {{selectedProduct.name | uppercase}}
     <span *ngIf="selectedProduct.variant">({{selectedProduct.variant}})</span>
@@ -25,8 +38,14 @@
 <!--
 <product-detail [product]="selectedProduct"></product-detail>
 -->
+
+
+
 <!-- TODO: properly combine this with product-editor -->
-<div class="product-editor" >
+<div class="product-editor"
+     (@addProductFormState.start)="logAnimationInfo($event)"
+     (@addProductFormState.done)="logAnimationInfo($event)"
+     [@addProductFormState]="selectedProduct?'collapsed':'expanded'" >
   <div class="editor-row">
     <div class="editor-item">
       <label>sku:</label>
@@ -69,12 +88,14 @@
     <label>disclaimer</label>
     <textarea #productDisclaimer placeholder="disclaimer" ></textarea>
   </div>
-</div>
-<button (click)="add(productSku.value,
+  <button (click)="add(productSku.value,
                     productName.value,
                     productVariant.value,
                     productDescription.value,
                     productPrice.value,
                     productCurrency.value,
                     productAvailability.value,
-                    productDisclaimer.value)">Add New</button>
+                    productDisclaimer.value)">Save</button>
+</div>
+
+

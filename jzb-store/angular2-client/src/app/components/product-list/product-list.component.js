@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var animations_1 = require("@angular/animations");
 var product_service_1 = require("../../services/product.service");
 var router_1 = require("@angular/router");
 var logger_service_1 = require("../../services/logger.service");
@@ -18,7 +19,6 @@ var ProductsComponent = (function () {
         this.router = router;
         this.productService = productService;
         this.logger = logger;
-        this.title = 'Josh\'s Super Awesome Store 6';
     }
     ProductsComponent.prototype.getProducts = function () {
         var _this = this;
@@ -42,6 +42,21 @@ var ProductsComponent = (function () {
     };
     ProductsComponent.prototype.edit = function (product) {
         this.router.navigate(['/editor', product.id]);
+    };
+    ProductsComponent.prototype.toggleAddProductForm = function () {
+        this.selectedProduct = null;
+    };
+    ProductsComponent.prototype.logAnimationInfo = function (evt) {
+        try {
+            this.logger.logInfo(JSON.stringify(evt));
+        }
+        catch (ex) {
+            this.logger.logInfo('"triggerName":"' + evt.triggerName + ',' +
+                '"fromState":"' + evt.toState + ',' +
+                '"fromState":"' + evt.toState + ',' +
+                '"phaseName":"' + evt.phaseName + ',' +
+                '"totalTime":"' + evt.totalTime);
+        }
     };
     ProductsComponent.prototype.add = function (/*id: number,*/ sku, name, variant, description, price, currency, availability, disclaimer) {
         var _this = this;
@@ -78,7 +93,36 @@ ProductsComponent = __decorate([
         selector: 'my-products',
         templateUrl: './product-list.component.html',
         styleUrls: ['./product-list.component.css', './../shared/product-detail-editor-shared.component.css'],
-        providers: [product_service_1.ProductService, logger_service_1.LoggerService]
+        providers: [product_service_1.ProductService, logger_service_1.LoggerService],
+        animations: [
+            animations_1.trigger('productActiveState', [
+                animations_1.state('inactive', animations_1.style({
+                    backgroundColor: '#eee',
+                    transform: 'scale(1)'
+                })),
+                animations_1.state('active', animations_1.style({
+                    backgroundColor: '#cfd8dc',
+                    transform: 'scale(1.1)'
+                })),
+                animations_1.transition('* => void', [animations_1.animate('500ms', animations_1.style({ opacity: 0, transform: 'scale(0)' }))]),
+                animations_1.transition('inactive => active', animations_1.animate('100ms ease-in')),
+                animations_1.transition('active => inactive', animations_1.animate('100ms ease-out'))
+            ]),
+            animations_1.trigger('addProductFormState', [
+                animations_1.state('expanded', animations_1.style({
+                    transform: 'scale(1)'
+                })),
+                animations_1.state('collapsed', animations_1.style({
+                    transform: 'scale(0)'
+                })),
+                animations_1.transition('expanded => collapsed', animations_1.animate('100ms ease-in')),
+                animations_1.transition('collapsed => expanded', animations_1.animate('100ms ease-out'))
+            ]),
+            animations_1.trigger('showProductLinkState', [
+                animations_1.transition(':enter', [animations_1.animate(1000, animations_1.style({ opacity: 1, width: 500, transform: 'scale(1)' }))]),
+                animations_1.transition(':leave', [animations_1.animate(1000, animations_1.style({ opacity: 0, transform: 'scale(0) translateX(-100%)' }))])
+            ])
+        ]
     }),
     __metadata("design:paramtypes", [router_1.Router,
         product_service_1.ProductService,

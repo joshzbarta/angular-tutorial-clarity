@@ -1,7 +1,7 @@
 export class Product {
 	id: number;
 	sku: string;
-	name: string;
+
 	variant: string;
 	description: string;
 	price: number;
@@ -10,7 +10,8 @@ export class Product {
 	disclaimer: string;
 	imgUrl: string;
 
-	constructor(){
+	constructor(public name: string,
+              public state = 'inactive'){
 		this.variant = '';
 		this.price=0;
 		this.currency='';
