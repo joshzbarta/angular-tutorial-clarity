@@ -119,8 +119,14 @@ ProductsComponent = __decorate([
                 animations_1.transition('collapsed => expanded', animations_1.animate('100ms ease-out'))
             ]),
             animations_1.trigger('showProductLinkState', [
-                animations_1.transition(':enter', [animations_1.animate(1000, animations_1.style({ opacity: 1, width: 500, transform: 'scale(1)' }))]),
-                animations_1.transition(':leave', [animations_1.animate(1000, animations_1.style({ opacity: 0, transform: 'scale(0) translateX(-100%)' }))])
+                animations_1.transition('void => *', [
+                    animations_1.style({ transform: 'translateX(50px)', opacity: 0 }),
+                    animations_1.group([
+                        animations_1.animate(1000, animations_1.style({ width: 500, transform: 'translateX(0)' })),
+                        animations_1.animate(1000, animations_1.style({ opacity: 1 }))
+                    ]),
+                    animations_1.transition(':leave', [animations_1.animate(1000, animations_1.style({ opacity: 0, transform: 'scale(0) translateX(-100%)' }))])
+                ])
             ])
         ]
     }),

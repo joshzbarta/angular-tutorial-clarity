@@ -5,7 +5,9 @@ import {
   state,
   style,
   animate,
-  transition
+  transition,
+  group,
+  keyframes
 } from '@angular/animations';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
@@ -43,10 +45,15 @@ import { LoggerService } from '../../services/logger.service';
         transition('collapsed => expanded', animate('100ms ease-out'))
       ]),
     trigger('showProductLinkState', [
-      transition(':enter', [animate(1000, style({opacity: 1, width:500, transform: 'scale(1)'}))]),
+      transition('void => *',[
+        style({ transform: 'translateX(50px)', opacity: 0}),
+        group([
+          animate(1000, style({width:500, transform: 'translateX(0)'})),
+          animate(1000, style({opacity:1}))
+        ]),
       transition(':leave', [animate(1000, style({opacity: 0, transform: 'scale(0) translateX(-100%)'}))])
     ])
-  ]
+  ])]
 })
 
 export class ProductsComponent implements OnInit {
@@ -98,7 +105,7 @@ export class ProductsComponent implements OnInit {
      '"phaseName":"'+evt.phaseName+','+
      '"totalTime":"'+evt.totalTime);
    }
-    
+
   }
 
 
