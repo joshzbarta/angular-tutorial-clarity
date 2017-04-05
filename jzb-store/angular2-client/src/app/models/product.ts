@@ -8,10 +8,13 @@ export class Product {
 	currency: string;
 	availability: string;
 	disclaimer: string;
+	imgUrl: string;
+
 	constructor(){
 		this.variant = '';
 		this.price=0;
 		this.currency='';
+
 	}
 
 

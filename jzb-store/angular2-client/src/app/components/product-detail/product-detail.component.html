@@ -1,5 +1,6 @@
 <button (click)="goBack()">Back</button>
 <div class="product-details" *ngIf="product && !edit">
+  <img *ngIf="product.imgUrl" src="{{product.imgUrl}}" />
   <a class="toggleMode" (click)="toggleMode()">edit</a>
   <h2>
     {{product.name}} <span *ngIf="product.variant">({{product.variant}})</span>

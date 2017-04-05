@@ -14,6 +14,9 @@
       'app': 'app',
 
       // angular bundles
+      '@angular/animations': 'node_modules/@angular/animations/bundles/animations.umd.min.js',
+      '@angular/animations/browser':'node_modules/@angular/animations/bundles/animations-browser.umd.js',
+      '@angular/platform-browser/animations': 'node_modules/@angular/platform-browser/bundles/platform-browser-animations.umd.js',
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
       '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.PRODUCTS = [
     {
         id: 1,
@@ -9,7 +10,8 @@ exports.PRODUCTS = [
         price: 700000,
         currency: 'imperial credits',
         availability: '',
-        disclaimer: 'Not responsible for death, dismemberment, or loss of limb caused by misuse of product. Seriously, this is a blade of pure energy intended for use by highly-trained space wizards. Do you really need a warning?'
+        disclaimer: 'Not responsible for death, dismemberment, or loss of limb caused by misuse of product. Seriously, this is a blade of pure energy intended for use by highly-trained space wizards. Do you really need a warning?',
+        imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/14/Lightsaber%2C_silver_hilt%2C_blue_blade.png'
     },
     {
         id: 2,
@@ -20,7 +22,8 @@ exports.PRODUCTS = [
         disclaimer: 'Not responsible for universe-destroying paradoxes.	Activation requires 1.21 gigawatts of electricity. Fusion power recommended, will run on plutonium or lightning. Compatibility not guaranteed with vehicles other than 1981, 1982, or 1983 DeLorean',
         variant: '',
         price: 0,
-        currency: ''
+        currency: '',
+        imgUrl: 'https://d13yacurqjgara.cloudfront.net/users/27981/screenshots/151070/flux-capacitor.jpg'
     },
     {
         id: 3,
@@ -31,7 +34,8 @@ exports.PRODUCTS = [
         price: 7,
         currency: 'galleons',
         availability: 'Sold Out',
-        disclaimer: 'Muggles are not supposed to have wands.'
+        disclaimer: 'Muggles are not supposed to have wands.',
+        imgUrl: 'http://ii.wbshop.com/fcgi-bin/iipsrv.fcgi?FIF=/images/warnerbros/source/warnerbros/hpnbwandlu.tif&wid=3000&cvt=jpeg'
     },
     {
         id: 4,
@@ -42,7 +46,8 @@ exports.PRODUCTS = [
         price: 200,
         currency: '₱',
         availability: 'Sold Out',
-        disclaimer: ''
+        disclaimer: '',
+        imgUrl: 'https://burnttoastbooks.files.wordpress.com/2015/04/pokeball.png'
     }
 ];
 //# sourceMappingURL=mock-products.js.map

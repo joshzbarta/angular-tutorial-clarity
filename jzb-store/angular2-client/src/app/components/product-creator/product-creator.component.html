@@ -1,0 +1,53 @@
+<!-- TODO: properly combine this with product-editor -->
+<div class="product-editor" >
+  <div class="editor-row">
+    <div class="editor-item">
+      <label>sku:</label>
+      <input #productSku placeholder="sku" />
+    </div>
+  </div>
+  <div class="editor-row">
+
+    <div class="editor-item">
+      <label>price:</label>
+      <input #productPrice placeholder="price" />
+    </div>
+
+    <div class="editor-item">
+      <label>currency:</label>
+      <input #productCurrency placeholder="currency" />
+    </div>
+
+    <div class="editor-item">
+      <label>availability:</label>
+      <input #productAvailability placeholder="availability" />
+    </div>
+  </div>
+  <div class="editor-row">
+    <div class="editor-item">
+      <label>name:</label>
+      <input #productName placeholder="name" />
+    </div>
+
+    <div class="editor-item">
+      <label>variant:</label>
+      <input #productVariant placeholder="name" />
+    </div>
+  </div>
+  <div>
+    <label>description</label>
+    <textarea #productDescription placeholder="description" ></textarea>
+  </div>
+  <div>
+    <label>disclaimer</label>
+    <textarea #productDisclaimer placeholder="disclaimer" ></textarea>
+  </div>
+</div>
+<button (click)="add(productSku.value,
+                    productName.value,
+                    productVariant.value,
+                    productDescription.value,
+                    productPrice.value,
+                    productCurrency.value,
+                    productAvailability.value,
+                    productDisclaimer.value)">Add New</button>

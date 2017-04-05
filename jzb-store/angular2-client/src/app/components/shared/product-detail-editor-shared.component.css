@@ -2,6 +2,13 @@
   border: solid black 2px;
   width: 50%;
   padding: 20px;
+  min-height: 220px;
+}
+.product-details img {
+  height: 200px;
+  width: 200px;
+  float: left;
+  margin-right: 20px;
 }
 .product-details, .product-editor,
 .product-details .description{
@@ -38,4 +45,8 @@
   display: inline-block;
   margin-bottom: 5px;
   min-width: 25px;
+}
+.editor-item .wide
+{
+  width: 500px;
 }

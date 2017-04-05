@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var mock_products_1 = require("../mock-products");
 var InMemoryDataService = (function () {
     function InMemoryDataService() {
