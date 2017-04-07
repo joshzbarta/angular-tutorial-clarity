@@ -1,6 +1,12 @@
 <button (click)="goBack()">Back</button>
 <div class="product-details" *ngIf="product && !edit">
-  <img *ngIf="product.imgUrl" src="{{product.imgUrl}}" />
+  <img *ngIf="product.imgUrl" src="{{product.imgUrl}}"
+       [@wiggleState]="wiggleState"
+       (mouseenter)="wiggleStart()"
+       (mouseleave)="wiggleStop()"
+       (@wiggleState.start)="wiggleHold()"
+       (@wiggleState.done)="wiggleFlip()"
+  />
   <a class="toggleMode" (click)="toggleMode()">edit</a>
   <h2>
     {{product.name}} <span *ngIf="product.variant">({{product.variant}})</span>

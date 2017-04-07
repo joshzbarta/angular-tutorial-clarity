@@ -2,7 +2,7 @@
   margin: 0 0 2em 2em;
   list-style-type: none;
   padding: 0;
-  width: 40em;
+  width: 45em;
 }
 .product-list .product-id {
   width: 2em;
@@ -50,6 +50,7 @@ button.delete {
 }
 h2 {
   cursor: pointer;
+  width: 45em;
 }
 h2:hover {
   color: #607D8B;

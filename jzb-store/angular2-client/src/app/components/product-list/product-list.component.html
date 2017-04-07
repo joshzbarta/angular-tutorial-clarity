@@ -1,3 +1,17 @@
+<div *ngIf="selectedProduct"
+     (@showProductLinkState.start)="logAnimationInfo($event)"
+     (@showProductLinkState.done)="logAnimationInfo($event)"
+     [@showProductLinkState]="selectedProduct?'expanded':'collapsed'"
+    class="showMeLink"
+>
+  <h2 (click)="gotoDetail(selectedProduct)">
+    Show me {{selectedProduct.name | uppercase}}
+    <span *ngIf="selectedProduct.variant">({{selectedProduct.variant}})</span>
+    ==>
+  </h2>
+
+</div>
+
 <ul class="product-list">
   <li *ngFor="let product of products" (click)="onSelect(product);"
       (@productActiveState.start)="logAnimationInfo($event)"
@@ -23,17 +37,7 @@
 
 </ul>
 
-<div *ngIf="selectedProduct"
-     (@showProductLinkState.start)="logAnimationInfo($event)"
-     (@showProductLinkState.done)="logAnimationInfo($event)"
-     [@showProductLinkState]="selectedProduct?'expanded':'collapsed'"  >
-  <h2 (click)="gotoDetail(selectedProduct)">
-    Show me {{selectedProduct.name | uppercase}}
-    <span *ngIf="selectedProduct.variant">({{selectedProduct.variant}})</span>
-    ==>
-  </h2>
 
-</div>
 
 <!--
 <product-detail [product]="selectedProduct"></product-detail>
