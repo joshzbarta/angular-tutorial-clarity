@@ -7,3 +7,29 @@
 <router-outlet></router-outlet>
 
 Hey check <span myHighlight>THIS</span> out!
+<br/><br/>
+
+
+<!-- TODO: seriously clean up styling, and move this to its own component -->
+<div style="width:400px">
+
+  <div style="float:left">
+    Border color:<br />
+    <input #borderColorInput value="red" />
+    <br/>
+    Border width:<br />
+    <input #borderWidthInput value="2" />
+    <br/>
+    Scale Factor:<br/>
+    <input #lensScaleInput value="1.1" />
+  </div>
+
+  <div style="float:right;margin-top:50px">
+    <span myLens [borderColor]="borderColorInput.value"
+          [borderWidth]="borderWidthInput.value"
+          [scale]="lensScaleInput.value" >THIS</span> is even better!
+
+  </div>
+</div>
+
+

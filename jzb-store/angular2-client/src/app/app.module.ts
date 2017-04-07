@@ -20,6 +20,7 @@ import { ProductSearchComponent } from './components/product-search/product-sear
 import { ProductService } from './services/product.service';
 import { LoggerService } from './services/logger.service';
 import { HighlightDirective } from './directives/highlight.directive';
+import { LensDirective } from './directives/lens.directive';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { HighlightDirective } from './directives/highlight.directive';
     ProductDetailComponent,
     ProductEditorComponent,
     ProductSearchComponent,
-    HighlightDirective
+    HighlightDirective,
+    LensDirective
   ],
   providers: [ ProductService, LoggerService ],
   bootstrap:    [ AppComponent ]
