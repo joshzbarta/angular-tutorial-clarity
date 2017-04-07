@@ -4,4 +4,5 @@
 .idea/workspace.xml
 jzb-store/npm-debug.log
 jzb-store/src/.idea/workspace.xml
-jzb-store/src/.idea/workspace.xml
+*.js.map
+jzb-store/angular2-client/src/app/**/*.js
