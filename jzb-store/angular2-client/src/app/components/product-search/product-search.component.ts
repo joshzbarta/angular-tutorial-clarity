@@ -35,7 +35,7 @@ export class ProductSearchComponent implements OnInit {
       .switchMap(term => term   // switch to new observable each time the term changes
         // return the http search observable
         ? this.productSearchService.search(term)
-        // or the observable of empty productes if there was no search term
+        // or the observable of empty products if there was no search term
         : Observable.of<Product[]>([]))
       .catch(error => {
         // TODO: add real error handling

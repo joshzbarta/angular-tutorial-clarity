@@ -10,8 +10,7 @@ export class Product {
 	disclaimer: string;
 	imgUrl: string;
 
-	constructor(public name: string,
-              public state = 'inactive'){
+	constructor(public name: string){
 		this.variant = '';
 		this.price=0;
 		this.currency='';
