@@ -22,12 +22,34 @@ import {
 	styleUrls: [ './../shared/product-detail-editor-shared.component.css', './product-detail.css'	],
   animations: [
     trigger('wiggleState',[
-      state('left', style({ transform: 'rotate(-10deg)' }) ),
-      state('center', style({transforma:'rotate(0deg)  '}) ),
-      state('right', style({ transform: 'rotate(10deg)' }) ),
-      transition('left <=> center', animate('100ms ease-in')),
-      transition('center <=> right', animate('100ms ease-in')),
-      transition('left <=> right', animate('200ms ease-in'))
+      state('center', style({transform:'rotate(0deg)  '}) ),
+      transition('center <=> left', animate('500ms',
+        keyframes([
+          style({transform:'rotate(0deg)',     offset: 0}),
+          style({transform:'rotate(10deg)',     offset: .25}),
+          style({transform:'rotate(0deg)',     offset: .5}),
+          style({transform:'rotate(-10deg)',     offset: .75})
+          //,style({transform:'rotate(0deg)',     offset: 1.0})
+        ])
+      )),
+      transition('center <=> right', animate('500ms',
+        keyframes([
+          style({transform:'rotate(0deg)',     offset: 0}),
+          style({transform:'rotate(10deg)',     offset: .25}),
+          style({transform:'rotate(0deg)',     offset: .5}),
+          style({transform:'rotate(-10deg)',     offset: .75})
+          //,style({transform:'rotate(0deg)',     offset: 1.0})
+        ])
+      )),
+      transition('left <=> right', animate('500ms',
+        keyframes([
+          style({transform:'rotate(0deg)',     offset: 0}),
+          style({transform:'rotate(10deg)',     offset: .25}),
+          style({transform:'rotate(0deg)',     offset: .5}),
+          style({transform:'rotate(-10deg)',     offset: .75})
+          //,style({transform:'rotate(0deg)',     offset: 1.0})
+        ])
+      ))
     ])
   ]
 })
@@ -74,27 +96,29 @@ export class ProductDetailComponent implements OnInit {
   }
 
   wiggleHold() {
+    this.logger.logInfo('wiggleHold '+this.hold);
       this.hold = true;
   }
 
   wiggleFlip(){
-
+    if(!this.hold) return;
     this.logger.logInfo('wiggleFlip '+this.hold);
     var state = this.wiggleState;
-    if(this.hold && state!='center')
+
+    if(state!='center')
     {
       this.wiggleState = state == 'left' ? 'right' : 'left';
     }
+
     this.hold=false;
   }
 
   //temporary implementation
-  getFormattedPrice(product: Product): string{
-    if(product.currency.length===1){
-      return product.currency+''+product.price;
+  getFormattedPrice(product: Product): string {
+    if (product.currency.length === 1) {
+      return product.currency + '' + product.price;
     }
     else {
-      return product.price+' '+product.currency;
+      return product.price + ' ' + product.currency;
     }
-  }
-}
+  }}

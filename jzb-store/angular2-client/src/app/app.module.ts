@@ -19,7 +19,7 @@ import { ProductEditorComponent } from './components/product-editor/product-edit
 import { ProductSearchComponent } from './components/product-search/product-search.component';
 import { ProductService } from './services/product.service';
 import { LoggerService } from './services/logger.service';
-
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   imports: [
@@ -36,7 +36,8 @@ import { LoggerService } from './services/logger.service';
     ProductsComponent,
     ProductDetailComponent,
     ProductEditorComponent,
-    ProductSearchComponent
+    ProductSearchComponent,
+    HighlightDirective
   ],
   providers: [ ProductService, LoggerService ],
   bootstrap:    [ AppComponent ]
