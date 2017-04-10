@@ -3,6 +3,7 @@ import { ActivatedRoute, Params }   from '@angular/router';
 import { Location }                 from '@angular/common';
 import { Router } from '@angular/router';
 import { Product } from '../../models/product';
+import { SpinnyDirective } from "../../directives/spinny/spinny.directive";
 import { ProductService } from '../../services/product.service';
 import { LoggerService } from "../../services/logger.service";
 import 'rxjs/add/operator/switchMap';
@@ -58,6 +59,7 @@ export class ProductDetailComponent implements OnInit {
   edit: boolean;
   wiggleState: string;
   hold: boolean;
+  addToCartText: string;
   constructor(
     private router: Router,
     private productService: ProductService,
@@ -67,6 +69,7 @@ export class ProductDetailComponent implements OnInit {
   ) {
     this.wiggleState = 'center';
     this.hold=false;
+    this.addToCartText = 'Add to Cart';
   }
 
   ngOnInit(): void {
@@ -114,7 +117,24 @@ export class ProductDetailComponent implements OnInit {
     this.hold=false;
   }
 
-  //temporary implementation
+  addToCart($event:any){
+
+    if(this.addToCartText=='Add to Cart'){
+      this.addToCartText = 'In Cart';
+    }
+    else{
+      this.addToCartText = 'Add to Cart';
+    }
+
+  }
+
+  //temporary implementations, these should really be part of the Product class, but I keep getting
+  // canAddToCart is not a function. Don't know why...
+  canAddToCart() : boolean {
+    return this.product.availability!='Sold Out';
+  }
+
+
   getFormattedPrice(product: Product): string {
     if (product.currency.length === 1) {
       return product.currency + '' + product.price;

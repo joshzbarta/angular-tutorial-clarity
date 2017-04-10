@@ -1,8 +1,6 @@
 .boxSpinny {
   margin: 20px auto;
   background: #5FCF80;
-  width: 180px;
-  height: 50px;
   display: inline-block;
 }
 .circleSpinny {
@@ -10,8 +8,6 @@
   background: #9351A6;
   border-radius: 50%;
   margin: 20px auto;
-  width: 180px;
-  height: 50px;
   display: inline-block;
 }
 .spinny {

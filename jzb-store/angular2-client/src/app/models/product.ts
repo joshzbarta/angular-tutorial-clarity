@@ -16,6 +16,4 @@ export class Product {
 		this.currency='';
 
 	}
-
-
 }

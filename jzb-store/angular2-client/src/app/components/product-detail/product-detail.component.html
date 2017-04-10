@@ -8,6 +8,8 @@
        (@wiggleState.done)="wiggleFlip()"
   />
   <a class="toggleMode" (click)="toggleMode()">edit</a>
+
+
   <h2>
     {{product.name}} <span *ngIf="product.variant">({{product.variant}})</span>
   </h2>
@@ -17,8 +19,14 @@
 
     <div *ngIf="product.price" class="price">{{getFormattedPrice(product)}}</div>
   </div>
-  <div class="description">{{product.description}}</div>
-  <div class="disclaimer">{{product.disclaimer}}</div>
+  <div>
+    <div class="description">{{product.description}}</div>
+    <div class="disclaimer">{{product.disclaimer}}</div>
+
+    <a *ngIf="canAddToCart()" spinny class="addToCart spinny boxSpinny" (click)="addToCart($event)">{{addToCartText}}</a>
+    <a *ngIf="!canAddToCart()" class="productAvailability">{{product.availability}}</a>
+  </div>
+
 </div>
 
 

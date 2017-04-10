@@ -48,7 +48,7 @@ export const PRODUCTS: Product[] = [
     description: 'A standard Poké Ball, used for catching Pokémon',
     price: 200,
     currency: '₱',
-    availability: 'Sold Out',
+    availability: '',
     disclaimer: '',
     imgUrl: 'https://burnttoastbooks.files.wordpress.com/2015/04/pokeball.png'
   }
