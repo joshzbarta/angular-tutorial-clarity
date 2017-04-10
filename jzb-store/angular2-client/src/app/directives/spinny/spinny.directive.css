@@ -1,0 +1,21 @@
+.boxSpinny {
+  margin: 20px auto;
+  background: #5FCF80;
+  width: 180px;
+  height: 50px;
+  display: inline-block;
+}
+.circleSpinny {
+  transform: rotate(1080deg);
+  background: #9351A6;
+  border-radius: 50%;
+  margin: 20px auto;
+  width: 180px;
+  height: 50px;
+  display: inline-block;
+}
+.spinny {
+  transition: all 1s ease-in-out;
+  text-align: center;
+  padding-top: 10px;
+}

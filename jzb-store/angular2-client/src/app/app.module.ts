@@ -17,10 +17,13 @@ import { ProductsComponent } from './components/product-list/product-list.compon
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ProductEditorComponent } from './components/product-editor/product-editor.component';
 import { ProductSearchComponent } from './components/product-search/product-search.component';
+import { Demo001Component } from './components/demo001/demo001.component';
+
 import { ProductService } from './services/product.service';
 import { LoggerService } from './services/logger.service';
 import { HighlightDirective } from './directives/highlight.directive';
 import { LensDirective } from './directives/lens.directive';
+import { SpinnyDirective } from './directives/spinny/spinny.directive';
 
 @NgModule({
   imports: [
@@ -38,8 +41,10 @@ import { LensDirective } from './directives/lens.directive';
     ProductDetailComponent,
     ProductEditorComponent,
     ProductSearchComponent,
+    Demo001Component,
     HighlightDirective,
-    LensDirective
+    LensDirective,
+    SpinnyDirective
   ],
   providers: [ ProductService, LoggerService ],
   bootstrap:    [ AppComponent ]

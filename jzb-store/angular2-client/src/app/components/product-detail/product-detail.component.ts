@@ -84,6 +84,7 @@ export class ProductDetailComponent implements OnInit {
     this.location.back();
   }
 
+  //How best to encapsulate this stuff? I'd like to have a  wiggleDirective or something...?
   wiggleStart(){
     if(this.hold) return;
     this.logger.logInfo('wiggleStart '+this.hold);

@@ -27,6 +27,8 @@ export class LensDirective {
 
   @HostListener('click') onClick() {
     this.logger.logInfo('click lens');
+    this.el.nativeElement.classList.add('redredred');
+    this.logger.logInfo( JSON.stringify(this.el.nativeElement.classList));
   }
 
   private deHighlight(){
@@ -34,6 +36,8 @@ export class LensDirective {
     this.el.nativeElement.style.borderRadius = null;
     this.el.nativeElement.style.textAlign = null;
     this.el.nativeElement.style.padding = null;
+
+
   }
 
   private highlight(color: string, borderWidth: number, scale: number) {

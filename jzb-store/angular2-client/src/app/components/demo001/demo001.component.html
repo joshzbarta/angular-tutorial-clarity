@@ -1,0 +1,27 @@
+Hey check <span myHighlight>THIS</span> out!
+<br/><br/>
+
+
+<div class="mainBox">
+
+  <div class="left">
+    Border color:<br />
+    <input #borderColorInput value="red" />
+    <br/>
+    Border width:<br />
+    <input #borderWidthInput value="2" />
+    <br/>
+    Scale Factor:<br/>
+    <input #lensScaleInput value="1.1" />
+  </div>
+
+  <div class="right">
+    <span myLens
+          [borderColor]="borderColorInput.value"
+          [borderWidth]="borderWidthInput.value"
+          [scale]="lensScaleInput.value" class="alert" >THIS</span> is even better (mouse over)!
+  </div>
+</div>
+
+
+<div spinny class="spinny boxSpinny">And this is really cool (click me)</div>

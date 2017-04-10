@@ -1,0 +1,28 @@
+.redBold {
+  color: red;
+  font-weight: bold;
+}
+
+.mainBox {
+  width:400px;
+  height:150px;
+  border: solid black 1px;
+}
+.mainBox .left {
+  float:left;
+}
+.mainBox .right {
+  float:right;margin-top:50px
+}
+
+.boxSpinny {
+  width: 180px;
+  height: 50px;
+}
+.circleSpinny {
+  width: 180px;
+  height: 50px;
+}
+.spinny {
+  padding-top: 10px;
+}
