@@ -1,0 +1,5 @@
+:host(.redHost) { display: block;background:red }
+:host-context(.demoList) h5 { background: cadetblue}
+:host /deep/ h5 {
+  font-family: Calibri
+}

@@ -1,0 +1,13 @@
+a {color: #039be5;
+  cursor: pointer;
+}
+h5{
+  font-size: 14px;
+}
+li {
+  margin-bottom: 10px;
+}
+.demoSubsection {
+  margin-right: 40px;
+  border: solid grey 1px;
+}

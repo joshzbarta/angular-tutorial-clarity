@@ -1,0 +1,36 @@
+
+<ul>
+  <li>
+    <a href="demo001">Demo 001 (fun directive stuff)</a>
+  </li>
+  <li>
+    <a (click)="showHideDemo002()">Demo 002 (component styles)</a>
+    <div *ngIf="showDemo002" class="demoSubsection">
+
+      <div [class.demoList]="useDemoListClass">
+        <h2 (click)="toggleClass()">Two demo002 components inside div <a title="click to toggle!">with<span *ngIf="useDemoListClass">out</span></a> class="demoList":</h2>
+
+        <demo002 class="redHost"></demo002>
+
+        <demo002></demo002>
+      </div>
+
+      <span class="youCanDoStylesThisWayButShouldnt">don't do styles like this span here</span>
+
+      <style>
+        .youCanDoStylesThisWayButShouldnt {
+          color: gray;
+          border: 1px solid #777;
+          font-size: 50%;
+        }
+      </style>
+    </div>
+  </li>
+</ul>
+
+
+
+
+
+
+

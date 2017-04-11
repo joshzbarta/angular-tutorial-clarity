@@ -17,7 +17,9 @@ import { ProductsComponent } from './components/product-list/product-list.compon
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ProductEditorComponent } from './components/product-editor/product-editor.component';
 import { ProductSearchComponent } from './components/product-search/product-search.component';
+import { DemoListComponent } from './components/demo-list/demo-list.component';
 import { Demo001Component } from './components/demo001/demo001.component';
+import { Demo002Component } from './components/demo002/demo002.component';
 
 import { ProductService } from './services/product.service';
 import { LoggerService } from './services/logger.service';
@@ -42,6 +44,8 @@ import { SpinnyDirective } from './directives/spinny/spinny.directive';
     ProductEditorComponent,
     ProductSearchComponent,
     Demo001Component,
+    Demo002Component,
+    DemoListComponent,
     HighlightDirective,
     LensDirective,
     SpinnyDirective
