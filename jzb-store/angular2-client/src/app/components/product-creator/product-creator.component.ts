@@ -10,8 +10,8 @@ import { LoggerService } from '../../services/logger.service';
 @Component({
   selector: 'my-products',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css',  '../../../directives/spinny/spinny.directive.css', './../shared/product-detail-editor-shared.component.css'],
-  providers: [ProductService, LoggerService]
+  styleUrls: ['./product-list.component.css',  '../../../directives/spinny/spinny.directive.css', './../shared/product-detail-editor-shared.component.css']
+  //,  providers: [ProductService, LoggerService]
 })
 
 export class ProductCreatorComponent implements OnInit {

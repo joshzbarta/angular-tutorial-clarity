@@ -16,7 +16,9 @@ export class ProductService {
   private productsUrl = 'api/products';
   private headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor( @Inject(LoggerService) private logger: LoggerService, private http: Http){}
+  constructor( private logger: LoggerService, private http: Http){
+    logger.logInfo("Product Service constructor called");
+  }
 
   getProduct(id: number): Promise<Product> {
     const url = `${this.productsUrl}/${id}`;

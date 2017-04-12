@@ -19,7 +19,7 @@ import { LoggerService } from '../../services/logger.service';
   selector: 'my-products',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css', './../shared/product-detail-editor-shared.component.css'],
-  providers: [ProductService, LoggerService],
+  //providers: [ProductService, LoggerService],
   animations: [
     trigger('productActiveState', [
       state('inactive', style({

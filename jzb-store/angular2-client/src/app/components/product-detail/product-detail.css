@@ -15,6 +15,7 @@
 }
 .addToCart {
   background: orange;
+  cursor: pointer;
 }
 
 .boxSpinny {
