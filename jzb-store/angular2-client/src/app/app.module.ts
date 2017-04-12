@@ -23,6 +23,7 @@ import { Demo002Component } from './components/demo002/demo002.component';
 
 import { ProductService } from './services/product.service';
 import { LoggerService } from './services/logger.service';
+import { SilentLoggerService } from './services/silent-logger.service';
 import { HighlightDirective } from './directives/highlight.directive';
 import { LensDirective } from './directives/lens.directive';
 import { SpinnyDirective } from './directives/spinny/spinny.directive';
@@ -50,7 +51,10 @@ import { SpinnyDirective } from './directives/spinny/spinny.directive';
     LensDirective,
     SpinnyDirective
   ],
-  providers: [ ProductService, LoggerService ],
+  providers: [
+    {provide: ProductService, useClass: ProductService },
+    {provide: LoggerService, useClass: LoggerService }
+  ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
