@@ -8,30 +8,70 @@
   -webkit-transform: rotate(-10deg); /* Chrome, Safari, Opera */
   transform: rotate(-10deg);
 }
+h2 {
+  margin-top: 0px;
+}
+.product-details {
+  min-height: 240px;
+  width: 770px;
+}
+.product-details-inner {
+  min-height:200px;
+  position: relative;
+}
+
+.product-details img {
+  height: 200px;
+  width: 200px;
+  float: left;
+  margin-right: 20px;
+}
+
+.product-details .disclaimer {
+  font-size: 50%;
+  margin-top: 10px;
+}
+.product-details .sku {
+  font-style: italic;
+  float: left;
+}
+.product-details .price {
+  font-style: italic;
+  float: right;
+}
+
+.addToCartSpacer, .addToCartContainer {
+  height:48px;
+}
+.addToCartContainer{
+  position:absolute;
+  bottom:0px;right:0px
+}
 .addToCart, .productAvailability {
   display: inline-block;
   float: right;
   font-weight: bold;
 }
+
+
+
 .addToCart {
-  background: orange;
   cursor: pointer;
 }
 
 .boxSpinny {
-  margin: 20px auto;
-  background: orange;
   display: inline-block;
 }
 .circleSpinny {
   transform: rotate(1080deg);
   background: #A4C639;
   border-radius: 50%;
-  margin: 20px auto;
+
   display: inline-block;
+  vertical-align: middle;
 }
 .spinny {
   transition: all 1s ease-in-out;
   text-align: center;
-  padding: 10px;
+
 }

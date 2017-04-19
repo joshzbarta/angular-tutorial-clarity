@@ -18,7 +18,11 @@
       (@productActiveState.done)="logAnimationInfo($event)"
       [@productActiveState]="product==selectedProduct?'active':'inactive'"
       [class.selected]="product==selectedProduct">
-    <button class="edit" *ngIf="product==selectedProduct" (click)="edit(product); $event.stopPropagation()">edit</button>
+    <button class="btn btn-primary btn-sm details" *ngIf="product==selectedProduct"
+            (click)="gotoDetail(product); $event.stopPropagation()">
+      Details
+    </button>
+
     <span class="product-id">{{product.id}}</span>
     <span class="product-sku">{{product.sku}}</span>
 
@@ -26,12 +30,21 @@
 			<span>{{product.name}}</span>
 			<span *ngIf="product.variant">({{product.variant}})</span>
 
-      <button class="delete" *ngIf="product==selectedProduct" (click)="delete(product); $event.stopPropagation()">x</button>
 		 </span>
+
+    <button class="btn btn-danger btn-sm delete" *ngIf="product==selectedProduct"
+            (click)="delete(product); $event.stopPropagation()">
+      <clr-icon shape="remove" class="" size="16"></clr-icon>
+    </button>
+    <button class="btn btn-sm edit" *ngIf="product==selectedProduct"
+            (click)="edit(product); $event.stopPropagation()">
+      <clr-icon shape="edit" class="" size="16"></clr-icon>
+    </button>
+
   </li>
 
   <li (click)="toggleAddProductForm()">
-   Add New Product
+    <clr-icon shape="plus-circle" class="" size="16"></clr-icon> Add New Product
 
   </li>
 

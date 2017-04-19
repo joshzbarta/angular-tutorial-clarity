@@ -74,11 +74,6 @@ export class ProductsComponent implements OnInit {
   }
 	onSelect(product: Product): void {
     this.logger.logInfo('ProductsComponent.onSelect called');
-    if(this.selectedProduct==product)
-    {
-      this.gotoDetail(product);
-    }
-
 		this.selectedProduct = product;
 	}
   gotoDetail(product: Product): void {

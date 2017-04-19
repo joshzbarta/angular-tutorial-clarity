@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params }   from '@angular/router';
-import { Location }                 from '@angular/common';
-import { Router } from '@angular/router';
+import { Location  }                from '@angular/common';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+
 import { Product } from '../../models/product';
 import { SpinnyDirective } from "../../directives/spinny/spinny.directive";
 import { ProductService } from '../../services/product.service';
@@ -30,7 +30,6 @@ import {
           style({transform:'rotate(10deg)',     offset: .25}),
           style({transform:'rotate(0deg)',     offset: .5}),
           style({transform:'rotate(-10deg)',     offset: .75})
-          //,style({transform:'rotate(0deg)',     offset: 1.0})
         ])
       )),
       transition('center <=> right', animate('500ms',
@@ -39,7 +38,6 @@ import {
           style({transform:'rotate(10deg)',     offset: .25}),
           style({transform:'rotate(0deg)',     offset: .5}),
           style({transform:'rotate(-10deg)',     offset: .75})
-          //,style({transform:'rotate(0deg)',     offset: 1.0})
         ])
       )),
       transition('left <=> right', animate('500ms',
@@ -48,7 +46,6 @@ import {
           style({transform:'rotate(10deg)',     offset: .25}),
           style({transform:'rotate(0deg)',     offset: .5}),
           style({transform:'rotate(-10deg)',     offset: .75})
-          //,style({transform:'rotate(0deg)',     offset: 1.0})
         ])
       ))
     ])

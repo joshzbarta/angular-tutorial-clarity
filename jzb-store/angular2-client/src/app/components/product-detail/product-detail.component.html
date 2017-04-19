@@ -1,5 +1,14 @@
-<button (click)="goBack()">Back</button>
+<button class="btn btn-sm" (click)="goBack()">
+  <clr-icon shape="arrow left"></clr-icon>
+  Back
+</button>
+<button class="btn btn-sm toggleMode" (click)="toggleMode()">
+  <clr-icon shape="edit left"></clr-icon>
+  Edit Product
+</button>
+
 <div class="product-details" *ngIf="product && !edit">
+
   <img *ngIf="product.imgUrl" src="{{product.imgUrl}}"
        [@wiggleState]="wiggleState"
        (mouseenter)="wiggleStart()"
@@ -7,27 +16,22 @@
        (@wiggleState.start)="wiggleHold()"
        (@wiggleState.done)="wiggleFlip()"
   />
-  <a class="toggleMode" (click)="toggleMode()">edit</a>
-
-
-  <h2>
-    {{product.name}} <span *ngIf="product.variant">({{product.variant}})</span>
-  </h2>
-
-  <div>&nbsp;
-    <div class="sku" *ngIf="product.sku">SKU#{{product.sku}}</div>
-
-    <div *ngIf="product.price" class="price">{{getFormattedPrice(product)}}</div>
-  </div>
-  <div>
+  <div class="product-details-inner">
+    <h2>
+      {{product.name}} <span *ngIf="product.variant">({{product.variant}})</span>
+    </h2>
+    <div style="height: 18px;position:relative;float:left;width:500px">
+      <div class="sku" *ngIf="product.sku">SKU#{{product.sku}}</div>
+      <div *ngIf="product.price" class="price">{{getFormattedPrice(product)}}</div>
+    </div>
     <div class="description">{{product.description}}</div>
     <div class="disclaimer">{{product.disclaimer}}</div>
+    <div class="addToCartSpacer"></div>
+    <div class="addToCartContainer">
 
-    <a *ngIf="canAddToCart()" spinny class="addToCart spinny boxSpinny" (click)="addToCart($event)">{{addToCartText}}</a>
-    <a *ngIf="!canAddToCart()" class="productAvailability">{{product.availability}}</a>
+    <button *ngIf="canAddToCart()" spinny class="addToCart spinny boxSpinny btn btn-primary" (click)="addToCart($event)">{{addToCartText}}</button>
+    <button *ngIf="!canAddToCart()" class="productAvailability btn btn-outline" disabled>{{product.availability}}</button>
   </div>
-
+  </div>
 </div>
-
-
 

@@ -14,6 +14,7 @@ import { AppComponent }  from './app.component';
 
 import { DashboardComponent }  from './components/dashboard/dashboard.component';
 import { ProductsComponent } from './components/product-list/product-list.component';
+import { ProductDatagridComponent } from './components/product-datagrid/product-datagrid.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ProductEditorComponent } from './components/product-editor/product-editor.component';
 import { ProductSearchComponent } from './components/product-search/product-search.component';
@@ -28,6 +29,8 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { LensDirective } from './directives/lens.directive';
 import { SpinnyDirective } from './directives/spinny/spinny.directive';
 
+import { ClarityModule } from 'clarity-angular';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -35,12 +38,14 @@ import { SpinnyDirective } from './directives/spinny/spinny.directive';
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ClarityModule.forRoot()
   ],
   declarations: [
     AppComponent,
     DashboardComponent,
     ProductsComponent,
+    ProductDatagridComponent,
     ProductDetailComponent,
     ProductEditorComponent,
     ProductSearchComponent,

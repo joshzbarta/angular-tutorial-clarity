@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.logger.logInfo('DashboardComponent:OnInit start');
     this.productService.getProducts()
-      .then(products => this.products = products.slice(2, 4));
+      .then(products => this.products = products.slice(0, 3));
     this.logger.logInfo('DashboardComponent:OnInit end');
   }
 }

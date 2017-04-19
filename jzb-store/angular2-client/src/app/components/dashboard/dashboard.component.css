@@ -19,6 +19,8 @@ h3 {
 }
 h4 {
   position: relative;
+  margin-top: 0px;
+  font-weight: bold;
 }
 .grid {
   margin: 0;

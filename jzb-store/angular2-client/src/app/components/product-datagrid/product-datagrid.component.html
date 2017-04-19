@@ -1,0 +1,113 @@
+
+<clr-datagrid class="product-datagrid">
+  <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
+  <clr-dg-column [clrDgField]="'sku'">SKU</clr-dg-column>
+  <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+  <clr-dg-column [clrDgField]="'variant'">Variant</clr-dg-column>
+  <clr-dg-column [clrDgField]="'price'">Price</clr-dg-column>
+  <clr-dg-column [clrDgField]="'availability'">Availability</clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let product of products">
+    <clr-dg-action-overflow class="detailsCol" >
+      <button class="action-item"
+              (click)="gotoDetail(product); $event.stopPropagation()">
+        View Product Page
+      </button>
+      <button class="action-item" (click)="onEdit(product)"><clr-icon shape="edit" class="" size="20"></clr-icon>Edit</button>
+      <button class="action-item" (click)="onDelete(product)"><clr-icon shape="remove" class="" size="20"></clr-icon>Delete</button>
+    </clr-dg-action-overflow>
+
+    <clr-dg-cell >{{product.id}}</clr-dg-cell>
+    <clr-dg-cell>{{product.sku}}</clr-dg-cell>
+    <clr-dg-cell>{{product.name}}</clr-dg-cell>
+    <clr-dg-cell>{{product.variant}}</clr-dg-cell>
+    <clr-dg-cell>{{product.price}} {{product.currency}}</clr-dg-cell>
+    <clr-dg-cell>{{product.availability}}</clr-dg-cell>
+    <clr-dg-row-detail *clrIfExpanded>
+      <div>
+        <img *ngIf="product.imgUrl" src="{{product.imgUrl}}" />
+      </div>
+      <div>
+        <span class="p1">{{product.description}}</span><br/>
+        <span class="p8">{{product.disclaimer}}</span><br />
+        <button class="btn btn-primary btn-sm details"
+                (click)="gotoDetail(product); $event.stopPropagation()">
+          View Product Page
+        </button>
+        <button class="btn btn-sm" (click)="onEdit(product)"><clr-icon shape="edit" class="" size="20"></clr-icon>Edit</button>
+        <button class="btn btn-danger btn-sm" (click)="onDelete(product)"><clr-icon shape="remove" class="" size="20"></clr-icon>Delete</button>
+      </div>
+    </clr-dg-row-detail>
+  </clr-dg-row>
+
+</clr-datagrid>
+
+<ul style="display:none">
+  <li *ngFor="let product of products"
+      (@productActiveState.done)="logAnimationInfo($event)"
+      [@productActiveState]="product==selectedProduct?'active':'inactive'">
+  </li>
+</ul>
+
+<a (click)="toggleAddProductForm()">
+  <clr-icon shape="plus-circle" class="" size="16"></clr-icon> Add New Product
+</a>
+
+<!-- TODO: properly combine this with product-editor -->
+<div class="product-editor"
+     (@addProductFormState.start)="logAnimationInfo($event)"
+     (@addProductFormState.done)="logAnimationInfo($event)"
+     [@addProductFormState]="addProductFormState" >
+  <div class="editor-row">
+    <div class="editor-item">
+      <label>sku:</label>
+      <input #productSku placeholder="sku" />
+    </div>
+  </div>
+  <div class="editor-row">
+
+    <div class="editor-item">
+      <label>price:</label>
+      <input #productPrice placeholder="price" />
+    </div>
+
+    <div class="editor-item">
+      <label>currency:</label>
+      <input #productCurrency placeholder="currency" />
+    </div>
+
+    <div class="editor-item">
+      <label>availability:</label>
+      <input #productAvailability placeholder="availability" />
+    </div>
+  </div>
+  <div class="editor-row">
+    <div class="editor-item">
+      <label>name:</label>
+      <input #productName placeholder="name" />
+    </div>
+
+    <div class="editor-item">
+      <label>variant:</label>
+      <input #productVariant placeholder="name" />
+    </div>
+  </div>
+  <div>
+    <label>description</label>
+    <textarea #productDescription placeholder="description" ></textarea>
+  </div>
+  <div>
+    <label>disclaimer</label>
+    <textarea #productDisclaimer placeholder="disclaimer" ></textarea>
+  </div>
+  <button (click)="add(productSku.value,
+                    productName.value,
+                    productVariant.value,
+                    productDescription.value,
+                    productPrice.value,
+                    productCurrency.value,
+                    productAvailability.value,
+                    productDisclaimer.value)">Save</button>
+</div>
+
+

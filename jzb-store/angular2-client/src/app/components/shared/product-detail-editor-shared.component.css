@@ -1,32 +1,15 @@
 .product-details, .product-editor {
   border: solid black 2px;
-  width: 50%;
+
   padding: 20px;
   min-height: 220px;
   border-radius: 10px;
 }
-.product-details img {
-  height: 200px;
-  width: 200px;
-  float: left;
-  margin-right: 20px;
+.product-editor
+{
+  width: 50%;
 }
-.product-details, .product-editor,
-.product-details .description{
-  margin-top: 10px;
-}
-.product-details .disclaimer {
-  font-size: 50%;
-  margin-top: 10px;
-}
-.product-details .sku {
-  font-style: italic;
-  float: left;
-}
-.product-details .price {
-  font-style: italic;
-  float: right;
-}
+
 .product-editor .toggleMode, .product-details .toggleMode {
   float: right;
   cursor: pointer;
